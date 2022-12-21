@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+#tuner-content{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100%;
+width: 100%;
+}
+
+#guitar-content{
+height: 466px;
+width: 570px;
+background-image: url("./../../assets/guitarHead.jpg");
+background-repeat: no-repeat;
+
+}
+.button-tuner{
+    position:relative;
+
+    border-radius: 50%;
+    border: rgb(8, 117, 8) 5px solid;
+    background-color: rgb(117, 209, 117);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding:18px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+
+}
+#tunere{
+    top: 47%;
+    left: 63%;
+}
+#tunerB{
+    top: 30%;
+    left: 49.5%;
+}
+#tunerG{
+    top: 13%;
+    left: 37.5%;
+}
+#tunerD{
+    top: 13%;
+    left: -15%;
+}
+#tunerA{
+    top: 30%;
+    left: -27%;
+}
+#tunerE{
+    top: 47%;
+    left: -40.5%;
+}
+
+
+
+
+#start-tuner-button{
+
+font-family: Roboto, sans-serif;
+font-weight: 0;
+font-size: 14px;
+color: #fff;
+background-color: #0066CC;
+padding: 10px 30px;
+border: 2px solid #0066cc;
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+border-radius: 50px;
+transition : 1000ms;
+transform: translateY(0);
+display: flex;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+}
+
+#start-tuner-button:hover{
+
+transition : 1000ms;
+padding: 10px 50px;
+transform : translateY(-0px);
+background-color: #fff;
+color: #0066cc;
+border: solid 2px #0066cc;
+}

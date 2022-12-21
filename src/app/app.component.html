@@ -1,0 +1,24 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="main-content">
+      <button id="menu-button" (click)="drawer.toggle()">   
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span id="title">Guitar App</span>
+      <div class = "content">
+        <app-guitar-tuner></app-guitar-tuner>
+      </div>
+    </div>
+     
+  
+
+</mat-drawer-container>
+
+<router-outlet></router-outlet>

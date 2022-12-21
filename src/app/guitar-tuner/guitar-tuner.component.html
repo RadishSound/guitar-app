@@ -1,0 +1,15 @@
+<div id = "tuner-content">
+    <canvas class="visualizer" *ngIf="isStarted"></canvas>
+
+    <div id="guitar-content"> 
+        <button class="button-tuner" id="tunere">e</button>
+        <button class="button-tuner" id="tunerB">B</button>
+        <button class="button-tuner" id="tunerG">G</button>
+        <button class="button-tuner" id="tunerD">D</button>
+        <button class="button-tuner" id="tunerA">A</button>
+        <button class="button-tuner" id="tunerE">E</button>
+    </div>
+    <div>
+        <button id="start-tuner-button" (click) = "startTuning()">Start</button>
+    </div>
+</div>
