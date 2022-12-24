@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
-
+*{
+    color: black;
+}
 #tuner-content{
 display: flex;
 flex-direction: column;
@@ -85,4 +87,20 @@ transform : translateY(-0px);
 background-color: #fff;
 color: #0066cc;
 border: solid 2px #0066cc;
+}
+
+.start-tuner-button-on{
+
+    padding: 10px 50px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+    }
+
+#note-played{
+    font-size: 20px;
+    color: black;
+    background-color: grey;
+}
+.visualizer{
 }
