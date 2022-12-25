@@ -37,45 +37,26 @@ export class GuitarTunerService {
  visualize(analyser: AnalyserNode, audioContext: AudioContext){
 
         let drawNoteVisual: any;
-        let previousValueToDisplay = "0";
-        var smoothingCount = 0;
-        var smoothingThreshold = 5;
-        var smoothingCountThreshold = 5;
+        let previousFrequenceToDisplay = 0;
+        let previousNoteToDisplay = "A";
+        let smoothingCount = 0;
+        let smoothingCountThreshold = 5;
     
         // Thanks to PitchDetect: https://github.com/cwilso/PitchDetect/blob/master/js/pitchdetect.js
-        var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-        
-    
+        var noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
         const drawNote = () => {
           drawNoteVisual = requestAnimationFrame(drawNote);
           var bufferLength = analyser.fftSize;
           var buffer = new Float32Array(bufferLength);
           analyser.getFloatTimeDomainData(buffer);
           
-          var autoCorrelateValue = this.autoCorrelate(buffer, audioContext.sampleRate)
+          var autoCorrelateValue = this.autoCorrelate(buffer, audioContext.sampleRate);
     
-          // Handle rounding
           let valueToDisplay = autoCorrelateValue.toString();
-          let rounding = <HTMLInputElement> document.querySelector('input[name="rounding"]:checked');
-
-          if(rounding){
-            if (rounding.value== 'none') {
-              // Do nothing
-            } else if (rounding.value == 'hz') {
-              valueToDisplay = Math.round(parseInt(valueToDisplay)).toString();
-            } else {
-              // Get the closest note
-              // Thanks to PitchDetect:
-              valueToDisplay = noteStrings[this.noteFromPitch(autoCorrelateValue) % 12];
-             
-            }
-          
-          }
-          var smoothing = <HTMLInputElement> document.querySelector('input[name="smoothing"]:checked');
-          let smoothingValue: string;
-          if(smoothing){
-              smoothingValue = smoothing.value;
-    
+          let noteToDisplay = noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
+          let harmoniqueToPlay = 3+Math.round(this.noteFromPitch(autoCorrelateValue) / 12);
+          let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
+          console.log(frequenceToDisplay);          
           if (autoCorrelateValue === -1) {
             const note = <HTMLDivElement> document.getElementById('note');
             if(note){
@@ -83,43 +64,39 @@ export class GuitarTunerService {
             return;
             }
           }
-          if (smoothingValue === 'none') {
-            smoothingThreshold = 99999;
-            smoothingCountThreshold = 0;
-          } else if (smoothingValue === 'basic') {
-            smoothingThreshold = 10;
-            smoothingCountThreshold = 5;
-          } else if (smoothingValue === 'very') {
-            smoothingThreshold = 5;
-            smoothingCountThreshold = 10;
-          }
-        }
-
-          if (this.noteIsSimilarEnough(rounding, valueToDisplay, previousValueToDisplay, smoothingCountThreshold)) {
+  
+          if (this.noteIsSimilarEnough( frequenceToDisplay, previousFrequenceToDisplay, smoothingCountThreshold)) {
             
 
             if (smoothingCount < smoothingCountThreshold) {
               smoothingCount++;
               return;
             } else {
-              previousValueToDisplay = valueToDisplay;
+              previousFrequenceToDisplay = frequenceToDisplay;
+              previousNoteToDisplay = noteToDisplay;
               
               smoothingCount = 0;
             }
           } else {
-            previousValueToDisplay = valueToDisplay;         
+            previousFrequenceToDisplay = frequenceToDisplay;         
+            previousNoteToDisplay = noteToDisplay;
              smoothingCount = 0;
             return;
           }
-          if (typeof(valueToDisplay) == 'number') {
-            valueToDisplay = valueToDisplay +' Hz';
-          }
           let note = <HTMLDivElement> document.getElementById('note');
+          let frequence = <HTMLDivElement> document.getElementById('frequence');
+          let harmonique = <HTMLDivElement> document.getElementById('harmonique');
+
 
           if(note){
-          note.innerText = valueToDisplay;
-
+          note.innerText = noteToDisplay;
             }
+          if(frequence){
+            frequence.innerText = frequenceToDisplay.toString()+" Hz";
+              }
+          if(harmonique){
+            harmonique.innerText = harmoniqueToPlay.toString();
+              }
         }
         
         drawNote();
@@ -215,19 +192,12 @@ export class GuitarTunerService {
 
   noteFromPitch( frequency: number ) {
   var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
-  return Math.round( noteNum ) + 69;
+  return Math.round( noteNum);
 }
- noteIsSimilarEnough(rounding: HTMLInputElement, valueToDisplay: string, previousValueToDisplay: string, smoothingThreshold: number) {
-  // Check threshold for number, or just difference for notes.
-  if (rounding.value ==='none' || rounding.value ==='hz') {
-    //console.log(previousValueToDisplay);
 
-    return Math.abs(parseInt(valueToDisplay) - parseInt(previousValueToDisplay)) < smoothingThreshold;
-  
-  } else {
-   console.log(valueToDisplay);
-    return valueToDisplay === previousValueToDisplay;
 
-  }
+ noteIsSimilarEnough(frequenceToDisplay: number, previousFrequenceToDisplay: number, smoothingThreshold: number) {
+
+    return Math.abs(frequenceToDisplay - previousFrequenceToDisplay) < smoothingThreshold;
 }
 }
