@@ -4,11 +4,18 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GuitarTunerService {
+  audioContext = new window.AudioContext();
+  stop(){
+    this.audioContext.suspend(); 
+}
 
   start(){
-    var source;
-      var audioContext = new window.AudioContext();
-      var analyser = audioContext.createAnalyser();
+      var source;
+      if(this.audioContext.state === "suspended"){
+        this.audioContext.resume();
+      }
+
+      var analyser = this.audioContext.createAnalyser();
       analyser.minDecibels = -100;
       analyser.maxDecibels = -10;
       analyser.smoothingTimeConstant = 0.85;
@@ -20,12 +27,13 @@ export class GuitarTunerService {
         var constraints = {audio: true};
         navigator.mediaDevices.getUserMedia(constraints)
           .then((stream) => {
-    
+            
               // Initialize the SourceNode
-              source = audioContext.createMediaStreamSource(stream);
+              source = this.audioContext.createMediaStreamSource(stream);
               // Connect the source node to the analyzer
               source.connect(analyser);
-              this.visualize(analyser, audioContext);
+              this.visualize(analyser, this.audioContext);
+             
             }
           )
           .catch(function(err) {
@@ -54,7 +62,7 @@ export class GuitarTunerService {
     
           let valueToDisplay = autoCorrelateValue.toString();
           let noteToDisplay = noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
-          let harmoniqueToPlay = 3+Math.round(this.noteFromPitch(autoCorrelateValue) / 12);
+          let harmoniqueToPlay = Math.round(this.noteFromPitch(autoCorrelateValue) / 12)-2;
           let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
           console.log(frequenceToDisplay);          
           if (autoCorrelateValue === -1) {
@@ -192,7 +200,8 @@ export class GuitarTunerService {
 
   noteFromPitch( frequency: number ) {
   var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
-  return Math.round( noteNum);
+
+  return Math.round( noteNum)+60;
 }
 
 

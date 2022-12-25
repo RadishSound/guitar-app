@@ -21,7 +21,7 @@
   #title{
     position: absolute;
     background-color: grey;
-    top: 0;
+    top: 20px;
     font-size: 40px;
     align-items: center;
   }
