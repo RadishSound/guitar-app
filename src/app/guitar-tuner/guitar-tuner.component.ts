@@ -15,6 +15,7 @@ export class GuitarTunerComponent {
 
     isStarted = false;
     maticon = "mic_off";
+    buttonActiveList = [false,false,false,false,false,false];
 
 
     startTuning() {
@@ -29,14 +30,26 @@ export class GuitarTunerComponent {
       }else{
         this.maticon = "mic_off";
         this.guitarTunerService.stop();
+        for (let index = 0; index < this.buttonActiveList.length; index++) {
+          
+            this.buttonActiveList[index]=false;
+                }
+    
+                }    
+        }
 
-
-      }
-    }
-
-    tuningWithNote(note:string, harmonic: number) {
+    tuningWithNote(note:string, harmonic: number, string: number) {
       
         this.guitarTunerService.tuningWithNote(note, harmonic);
+        for (let index = 0; index < this.buttonActiveList.length; index++) {
+          if(index === string-1){
+            this.buttonActiveList[index]=true;
+
+          }else{
+            this.buttonActiveList[index]=false;
+
+          }
+        }
 
     }
 }
