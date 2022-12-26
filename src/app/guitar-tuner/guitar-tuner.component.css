@@ -6,15 +6,18 @@
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: space-around;
 height: 100%;
 width: 100%;
 }
 
 #guitar-content{
-height: 466px;
-width: 570px;
+height: 300px;
+width: 450px;
+border: 2px solid black;
 background-image: url("./../../assets/guitarHead.jpg");
+background-size: cover;
+
 background-repeat: no-repeat;
 
 }
@@ -22,12 +25,12 @@ background-repeat: no-repeat;
     position:relative;
 
     border-radius: 50%;
-    border: rgb(8, 117, 8) 5px solid;
+    border: rgb(8, 117, 8) 3px solid;
     background-color: rgb(117, 209, 117);
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
-    padding:18px 25px;
+    padding:15px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
 
@@ -38,28 +41,28 @@ sub{
     color: white;
 }
 #tunere{
-    top: 47%;
+    top: 58%;
     left: 62.5%;
 }
 #tunerB{
-    top: 30%;
+    top: 35%;
     left: 47.5%;
 }
 #tunerG{
     top: 13%;
-    left: 33.5%;
+    left: 35%;
 }
 #tunerD{
     top: 13%;
-    left: -21%;
+    left: -19%;
 }
 #tunerA{
-    top: 30%;
-    left: -35%;
+    top: 35%;
+    left: -32.5%;
 }
 #tunerE{
-    top: 47%;
-    left: -50.5%;
+    top: 56%;
+    left: -47%;
 }
 
 
