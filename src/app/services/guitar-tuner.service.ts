@@ -9,10 +9,7 @@ export class GuitarTunerService {
   noteTuned!: string;
   frequencyTarget!: number;
   harmonicTarget!: number;
-  // noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
   noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-
-  // let indexNoteTuned = noteStrings.findIndex(note => note === this.noteTuned);
   stop(){
     this.audioContext.suspend(); 
 }
@@ -90,11 +87,7 @@ export class GuitarTunerService {
         let smoothingCount = 0;
         let smoothingCountThreshold = 5;
     
-        // Thanks to PitchDetect: https://github.com/cwilso/PitchDetect/blob/master/js/pitchdetect.js
-        // var noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
-        // let indexNoteTuned = noteStrings.findIndex(note => note === this.noteTuned);
-
-        const drawNote = () => {
+          const drawNote = () => {
           drawNoteVisual = requestAnimationFrame(drawNote);
           var bufferLength = this.analyser.fftSize;
           var buffer = new Float32Array(bufferLength);
@@ -105,7 +98,8 @@ export class GuitarTunerService {
           let noteToDisplay = this.noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
           let harmoniqueToPlay = Math.floor(this.noteFromPitch(autoCorrelateValue) / 12)-2;
           let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
-             
+          let offsetPlayed = Math.round((frequenceToDisplay-this.frequencyTarget)*10/(this.frequencyTarget*Math.abs( 1- Math.pow(2,1/12))));
+          
           if (autoCorrelateValue === -1) {
             const note = <HTMLDivElement> document.getElementById('note');
             if(note){
@@ -134,6 +128,7 @@ export class GuitarTunerService {
           }
           let note = <HTMLDivElement> document.getElementById('note');
           let frequence = <HTMLDivElement> document.getElementById('frequence');
+          let offset = <HTMLDivElement> document.getElementById('offset');
 
 
           if(note){
@@ -146,6 +141,9 @@ export class GuitarTunerService {
         }
           if(frequence){
             frequence.innerText = "fréquence jouée : "+frequenceToDisplay.toString()+" Hz | fréquence voulue : "+ this.frequencyTarget+ "Hz";
+              }
+          if(offset){
+            offset.innerText = "décalage :" +offsetPlayed;
               }
       
         }

@@ -32,6 +32,9 @@ background-repeat: no-repeat;
     z-index: 2;
 
 }
+sub{
+    color: white;
+}
 #tunere{
     top: 47%;
     left: 62.5%;
