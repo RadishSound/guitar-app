@@ -5,6 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class GuitarTunerService {
   audioContext = new window.AudioContext();
+  analyser =  this.audioContext.createAnalyser();
+  noteTuned!: string;
+  frequencyTarget!: number;
+  harmonicTarget!: number;
+  // noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+  noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+  // let indexNoteTuned = noteStrings.findIndex(note => note === this.noteTuned);
   stop(){
     this.audioContext.suspend(); 
 }
@@ -15,10 +23,9 @@ export class GuitarTunerService {
         this.audioContext.resume();
       }
 
-      var analyser = this.audioContext.createAnalyser();
-      analyser.minDecibels = -100;
-      analyser.maxDecibels = -10;
-      analyser.smoothingTimeConstant = 0.85;
+      this.analyser.minDecibels = -100;
+      this.analyser.maxDecibels = -10;
+      this.analyser.smoothingTimeConstant = 0.85;
       if (!navigator?.mediaDevices?.getUserMedia) {
         // No audio allowed
         alert('Sorry, getUserMedia is required for the app.')
@@ -31,8 +38,8 @@ export class GuitarTunerService {
               // Initialize the SourceNode
               source = this.audioContext.createMediaStreamSource(stream);
               // Connect the source node to the analyzer
-              source.connect(analyser);
-              this.visualize(analyser, this.audioContext);
+              source.connect(this.analyser);
+              this.visualize();
              
             }
           )
@@ -41,8 +48,41 @@ export class GuitarTunerService {
           });
         }
       }
+
+      tuningWithNote(note: string, harmonic: number){
+        this.noteTuned = note;
+        this.harmonicTarget = harmonic;
+        var source;  
+        let indexNoteTuned = this.noteStrings.findIndex(n => n === this.noteTuned);
+        this.frequencyTarget = this.frequenceFromIndexNote(indexNoteTuned, this.harmonicTarget );
+        this.analyser.minDecibels = -100;
+        this.analyser.maxDecibels = -10;
+        this.analyser.smoothingTimeConstant = 0.85;
+        if (!navigator?.mediaDevices?.getUserMedia) {
+          // No audio allowed
+          alert('Sorry, getUserMedia is required for the app.')
+          return;
+        } else {
+          var constraints = {audio: true};
+          navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+              
+                // Initialize the SourceNode
+                source = this.audioContext.createMediaStreamSource(stream);
+                // Connect the source node to the analyzer
+                source.connect(this.analyser);
+                this.visualize();
+               
+              }
+            )
+            .catch(function(err) {
+              alert('Sorry, microphone permissions are required for the app. Feel free to read on without playing :)')
+            });
+          }
+        }
+      
     
- visualize(analyser: AnalyserNode, audioContext: AudioContext){
+ visualize(){
 
         let drawNoteVisual: any;
         let previousFrequenceToDisplay = 0;
@@ -51,24 +91,25 @@ export class GuitarTunerService {
         let smoothingCountThreshold = 5;
     
         // Thanks to PitchDetect: https://github.com/cwilso/PitchDetect/blob/master/js/pitchdetect.js
-        var noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+        // var noteStrings = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+        // let indexNoteTuned = noteStrings.findIndex(note => note === this.noteTuned);
+
         const drawNote = () => {
           drawNoteVisual = requestAnimationFrame(drawNote);
-          var bufferLength = analyser.fftSize;
+          var bufferLength = this.analyser.fftSize;
           var buffer = new Float32Array(bufferLength);
-          analyser.getFloatTimeDomainData(buffer);
+          this.analyser.getFloatTimeDomainData(buffer);
           
-          var autoCorrelateValue = this.autoCorrelate(buffer, audioContext.sampleRate);
-    
+          var autoCorrelateValue = this.autoCorrelate(buffer, this.audioContext.sampleRate);
           let valueToDisplay = autoCorrelateValue.toString();
-          let noteToDisplay = noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
-          let harmoniqueToPlay = Math.round(this.noteFromPitch(autoCorrelateValue) / 12)-2;
+          let noteToDisplay = this.noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
+          let harmoniqueToPlay = Math.floor(this.noteFromPitch(autoCorrelateValue) / 12)-2;
           let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
-          console.log(frequenceToDisplay);          
+             
           if (autoCorrelateValue === -1) {
             const note = <HTMLDivElement> document.getElementById('note');
             if(note){
-             note.innerText = 'Too quiet...';
+             note.innerText = '...'+ "Note voulue : "+this.noteTuned+this.harmonicTarget;;
             return;
             }
           }
@@ -93,18 +134,20 @@ export class GuitarTunerService {
           }
           let note = <HTMLDivElement> document.getElementById('note');
           let frequence = <HTMLDivElement> document.getElementById('frequence');
-          let harmonique = <HTMLDivElement> document.getElementById('harmonique');
 
 
           if(note){
-          note.innerText = noteToDisplay;
-            }
+          note.innerText = "note jouée: "+noteToDisplay + harmoniqueToPlay+" |  Note voulue : "+this.noteTuned+this.harmonicTarget;
+          if(this.isTuned(frequenceToDisplay)){
+            note.style.backgroundColor = "green";
+          } else{
+            note.style.backgroundColor= "red";
+          }   
+        }
           if(frequence){
-            frequence.innerText = frequenceToDisplay.toString()+" Hz";
+            frequence.innerText = "fréquence jouée : "+frequenceToDisplay.toString()+" Hz | fréquence voulue : "+ this.frequencyTarget+ "Hz";
               }
-          if(harmonique){
-            harmonique.innerText = harmoniqueToPlay.toString();
-              }
+      
         }
         
         drawNote();
@@ -200,13 +243,25 @@ export class GuitarTunerService {
 
   noteFromPitch( frequency: number ) {
   var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
-
-  return Math.round( noteNum)+60;
+   return Math.round( noteNum)+69;
 }
 
 
  noteIsSimilarEnough(frequenceToDisplay: number, previousFrequenceToDisplay: number, smoothingThreshold: number) {
 
     return Math.abs(frequenceToDisplay - previousFrequenceToDisplay) < smoothingThreshold;
+}
+
+frequenceFromIndexNote( indexNote: number, harmonic: number ) {
+
+  
+  const frequence = 440*(Math.pow(2,((indexNote-9))/12+(harmonic-3)));
+  // console.log("fréquence target : "+frequence+ " index Note: "+ indexNote+ "harmonic: "+harmonic);
+ 
+  return  frequence;
+}
+
+isTuned(frequencyPlayed: number): boolean{
+  return Math.abs(frequencyPlayed-this.frequencyTarget) < 5;
 }
 }

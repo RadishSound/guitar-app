@@ -16,9 +16,11 @@ export class GuitarTunerComponent {
     isStarted = false;
     maticon = "mic_off";
 
+
     startTuning() {
+      arguments.length
       this.isStarted = !this.isStarted;
-      console.log(this.isStarted);
+      // console.log(this.isStarted);
       if(this.isStarted){
         this.maticon = "mic_none";
         this.guitarTunerService.start();
@@ -30,8 +32,12 @@ export class GuitarTunerComponent {
 
 
       }
+    }
 
-      console.log(navigator.mediaDevices);
-  }
+    tuningWithNote(note:string, harmonic: number) {
+      
+        this.guitarTunerService.tuningWithNote(note, harmonic);
+
+    }
 }
   

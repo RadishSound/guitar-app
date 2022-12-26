@@ -1,17 +1,16 @@
 <div id = "tuner-content">
         <div id="note">Press start to begin</div>
         <div id="frequence">fréquence (Hz)</div>
-        <div id="harmonique">fréquence théorique (Hz)</div>
 
 
 
     <div id="guitar-content"> 
-        <button class="button-tuner" id="tunere">e</button>
-        <button class="button-tuner" id="tunerB">B</button>
-        <button class="button-tuner" id="tunerG">G</button>
-        <button class="button-tuner" id="tunerD">D</button>
-        <button class="button-tuner" id="tunerA">A</button>
-        <button class="button-tuner" id="tunerE">E</button>
+        <button class="button-tuner" id="tunere" (click)="tuningWithNote('E', 3)">E<sub>3</sub></button>
+        <button class="button-tuner" id="tunerB" (click)="tuningWithNote('B', 2)">B<sub>2</sub></button>
+        <button class="button-tuner" id="tunerG" (click)="tuningWithNote('G', 2)">G<sub>2</sub></button>
+        <button class="button-tuner" id="tunerD" (click)="tuningWithNote('D', 2)">D<sub>2</sub></button>
+        <button class="button-tuner" id="tunerA" (click)="tuningWithNote('A', 1)">A<sub>1</sub></button>
+        <button class="button-tuner" id="tunerE" (click)="tuningWithNote('E', 1)">E<sub>1</sub></button>
     </div>
     <div>
         <button id="start-tuner-button" (click) = "startTuning()" ><mat-icon [fontIcon]="maticon"></mat-icon></button>
