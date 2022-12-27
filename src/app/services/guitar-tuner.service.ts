@@ -84,7 +84,7 @@ export class GuitarTunerService {
 
         let drawNoteVisual: any;
         let previousFrequenceToDisplay = 0;
-        let previousNoteToDisplay = "A";
+        let previousNoteToDisplay: string ;
         let smoothingCount = 0;
         let smoothingCountThreshold = 5;
     
@@ -99,12 +99,18 @@ export class GuitarTunerService {
           let noteToDisplay = this.noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
           let harmoniqueToPlay = Math.floor(this.noteFromPitch(autoCorrelateValue) / 12)-2;
           let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
-          let offsetPlayed = Math.round((frequenceToDisplay-this.frequencyTarget)*10/(this.frequencyTarget*Math.abs( 1- Math.pow(2,1/12))));
+          let offsetPlayed = (frequenceToDisplay-this.frequencyTarget)*10/(this.frequencyTarget*Math.abs( 1- Math.pow(2,1/12)));
           
           if (autoCorrelateValue === -1) {
             const note = <HTMLDivElement> document.getElementById('note');
+
             if(note){
-             note.innerText = '...'+ "Note voulue : "+this.noteTuned+this.harmonicTarget;;
+              if(previousNoteToDisplay){
+                note.innerText = previousNoteToDisplay;
+              }else{
+                note.innerText = "..."
+              }
+             
             return;
             }
           }
@@ -131,11 +137,13 @@ export class GuitarTunerService {
           let frequence = <HTMLDivElement> document.getElementById('frequence');
           let offset = <HTMLDivElement> document.getElementById('offset');
           let arrow = <HTMLDivElement> document.getElementById('arrow');
+          let subNote = <HTMLDivElement> document.getElementById('subNote');
+
 
 
 
           if(note){
-          note.innerText = "note jouée: "+noteToDisplay + harmoniqueToPlay+" |  Note voulue : "+this.noteTuned+this.harmonicTarget;
+          note.innerText = noteToDisplay;
           if(this.isTuned(frequenceToDisplay)){
             note.style.backgroundColor = "green";
           } else{
@@ -143,15 +151,20 @@ export class GuitarTunerService {
           }   
         }
           if(frequence){
-            frequence.innerText = "fréquence jouée : "+frequenceToDisplay.toString()+" Hz | fréquence voulue : "+ this.frequencyTarget+ "Hz";
+            frequence.innerText = frequenceToDisplay+" Hz";
               }
           if(offset){
             offset.innerText = "décalage :" +offsetPlayed;
               }
           if(arrow){
             arrow.style.transform = `rotate(${this.arrowRotation(offsetPlayed)}deg)`;
-            console.log(offsetPlayed*9);
+            console.log(this.arrowRotation(offsetPlayed));
           }
+          if(subNote){
+            subNote.innerText=harmoniqueToPlay.toString();
+          }
+
+        
         }
         
         drawNote();
