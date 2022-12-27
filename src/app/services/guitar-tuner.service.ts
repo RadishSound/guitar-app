@@ -10,7 +10,10 @@ export class GuitarTunerService {
   noteTuned!: string;
   frequencyTarget!: number;
   harmonicTarget!: number;
+  stringFocus!: number;
   noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  tuningThreshold = 20;
+
   stop(){
     this.audioContext.suspend(); 
 }
@@ -47,9 +50,10 @@ export class GuitarTunerService {
         }
       }
 
-      tuningWithNote(note: string, harmonic: number){
+      tuningWithNote(note: string, harmonic: number, string: number){
         this.noteTuned = note;
         this.harmonicTarget = harmonic;
+        this.stringFocus = string;
         var source;  
         let indexNoteTuned = this.noteStrings.findIndex(n => n === this.noteTuned);
         this.frequencyTarget = this.frequenceFromIndexNote(indexNoteTuned, this.harmonicTarget );
@@ -86,6 +90,7 @@ export class GuitarTunerService {
         let previousFrequenceToDisplay = 0;
         let previousNoteToDisplay: string ;
         let smoothingCount = 0;
+        let tunedCount = 0;
         let smoothingCountThreshold = 5;
     
           const drawNote = () => {
@@ -120,35 +125,43 @@ export class GuitarTunerService {
 
             if (smoothingCount < smoothingCountThreshold) {
               smoothingCount++;
+
+              if(previousNoteToDisplay === this.noteTuned){
+              
+                tunedCount++;
+
+              }
               return;
             } else {
               previousFrequenceToDisplay = frequenceToDisplay;
               previousNoteToDisplay = noteToDisplay;
-              
+            
               smoothingCount = 0;
             }
           } else {
             previousFrequenceToDisplay = frequenceToDisplay;         
             previousNoteToDisplay = noteToDisplay;
              smoothingCount = 0;
+             tunedCount = 0;
+
             return;
           }
+          
+          if(this.isTuned(tunedCount,noteToDisplay)){
+            const string = <HTMLButtonElement> document.getElementById(`string${this.stringFocus}`);
+                if(string){
+                  string.style.borderColor= 'gold';
+                }
+          }
+          console.log(tunedCount);
           let note = <HTMLDivElement> document.getElementById('note');
           let frequence = <HTMLDivElement> document.getElementById('frequence');
           let offset = <HTMLDivElement> document.getElementById('offset');
           let arrow = <HTMLDivElement> document.getElementById('arrow');
           let subNote = <HTMLDivElement> document.getElementById('subNote');
 
-
-
-
           if(note){
           note.innerText = noteToDisplay;
-          if(this.isTuned(frequenceToDisplay)){
-            note.style.backgroundColor = "green";
-          } else{
-            note.style.backgroundColor= "red";
-          }   
         }
           if(frequence){
             frequence.innerText = frequenceToDisplay+" Hz";
@@ -158,7 +171,6 @@ export class GuitarTunerService {
               }
           if(arrow){
             arrow.style.transform = `rotate(${this.arrowRotation(offsetPlayed)}deg)`;
-            console.log(this.arrowRotation(offsetPlayed));
           }
           if(subNote){
             subNote.innerText=harmoniqueToPlay.toString();
@@ -278,8 +290,8 @@ frequenceFromIndexNote( indexNote: number, harmonic: number ) {
   return  frequence;
 }
 
-isTuned(frequencyPlayed: number): boolean{
-  return Math.abs(frequencyPlayed-this.frequencyTarget) < 5;
+isTuned(tunedCount: number, noteToDisplay: string): boolean{
+    return tunedCount>=this.tuningThreshold;
 }
 arrowRotation(offset: number): number{
   let angle = offset*9;
@@ -291,4 +303,7 @@ arrowRotation(offset: number): number{
   }
   return  angle;
 }
+
+
+
 }

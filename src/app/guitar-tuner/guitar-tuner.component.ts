@@ -40,7 +40,7 @@ export class GuitarTunerComponent {
 
     tuningWithNote(note:string, harmonic: number, string: number) {
       
-        this.guitarTunerService.tuningWithNote(note, harmonic);
+        this.guitarTunerService.tuningWithNote(note, harmonic, string);
         for (let index = 0; index < this.buttonActiveList.length; index++) {
           if(index === string-1){
             this.buttonActiveList[index]=true;
