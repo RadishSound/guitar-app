@@ -1,3 +1,4 @@
+import { IsFocusableConfig } from '@angular/cdk/a11y';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -129,6 +130,8 @@ export class GuitarTunerService {
           let note = <HTMLDivElement> document.getElementById('note');
           let frequence = <HTMLDivElement> document.getElementById('frequence');
           let offset = <HTMLDivElement> document.getElementById('offset');
+          let arrow = <HTMLDivElement> document.getElementById('arrow');
+
 
 
           if(note){
@@ -145,7 +148,10 @@ export class GuitarTunerService {
           if(offset){
             offset.innerText = "décalage :" +offsetPlayed;
               }
-      
+          if(arrow){
+            arrow.style.transform = `rotate(${this.arrowRotation(offsetPlayed)}deg)`;
+            console.log(offsetPlayed*9);
+          }
         }
         
         drawNote();
@@ -261,5 +267,15 @@ frequenceFromIndexNote( indexNote: number, harmonic: number ) {
 
 isTuned(frequencyPlayed: number): boolean{
   return Math.abs(frequencyPlayed-this.frequencyTarget) < 5;
+}
+arrowRotation(offset: number): number{
+  let angle = offset*9;
+  if(angle>90){
+    angle=90;
+  }
+  else if(angle <-90){
+    angle = -90;
+  }
+  return  angle;
 }
 }

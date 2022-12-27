@@ -11,6 +11,37 @@ height: 100%;
 width: 100%;
 }
 
+#half-circle{
+    width: 200px;
+    height: 100px; /* as the half of the width */
+    background-color: rgb(255, 255, 255,0);
+    border-top-left-radius: 110px;  /* 100px of height + 10px of border */
+    border-top-right-radius: 110px; /*100px of height + 10px of border*/
+    border: 10px solid gray;
+    border-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+#arrow{
+    transform-origin: bottom;
+    transform: rotate(0deg);
+
+}
+#needle{
+    background-color: yellow;
+    height: 80px;
+    width: 10px;
+
+}
+#round{
+    background-color: black;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+}
+
 #guitar-content{
 height: 300px;
 width: 450px;
