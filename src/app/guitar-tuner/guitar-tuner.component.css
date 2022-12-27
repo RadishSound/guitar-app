@@ -11,8 +11,8 @@ height: 100%;
 width: 100%;
 }
 #gauge-tuner{
-    
-
+    position: relative;
+    top: 25px;
 }
 
 #half-circle{
@@ -21,7 +21,7 @@ width: 100%;
     background-color: rgb(255, 255, 255,0);
     border-top-left-radius: 110px;  /* 100px of height + 10px of border */
     border-top-right-radius: 110px; /*100px of height + 10px of border*/
-    border: 10px solid rgb(200, 197, 197);
+    border: 10px solid rgb(199, 200, 197);
     border-bottom: 0;
     position: relative;
     display: flex;
@@ -34,18 +34,28 @@ width: 100%;
 #arrow{
     position: absolute;
     bottom: 0;
-    height:115%;
+    height:135%;
     transform-origin: bottom;
     transform: rotate(0deg);
+    /* border: 2px black solid; */
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
 }
 #cursor{
   
     height:20px;
-    width: 5px;
-    border-radius: 10%;
+    width: 7px;
+    border-radius: 30%;
     background-color: rgb(0, 0, 0);  
     
+}
+#offset {
+    
+
 }
 #note-container{
     position: absolute;

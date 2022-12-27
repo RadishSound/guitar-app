@@ -167,7 +167,7 @@ export class GuitarTunerService {
             frequence.innerText = frequenceToDisplay+" Hz";
               }
           if(offset){
-            offset.innerText = "décalage :" +offsetPlayed;
+            offset.innerText = offsetPlayed.toString();
               }
           if(arrow){
             arrow.style.transform = `rotate(${this.arrowRotation(offsetPlayed)}deg)`;

@@ -16,7 +16,7 @@ export class GuitarTunerComponent {
     isStarted = false;
     maticon = "mic_off";
     buttonActiveList = [false,false,false,false,false,false];
-
+    // stringTuningList = ["E3","B2","G2","D2","A1","E1"];
 
     startTuning() {
       arguments.length

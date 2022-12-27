@@ -2,6 +2,7 @@
     <div id="gauge-tuner">
         <div id="half-circle">
             <div id="arrow">
+                <div id="offset">...</div>
                 <div id="cursor"></div>
             </div>
             <div id="note-container">
@@ -9,12 +10,10 @@
                 <div id="frequence"></div>
             </div>
     </div>
-        <!-- <div id="note">Press start to begin</div>
-        <div id="frequence">fréquence (Hz)</div>
-        <div id="offset">décalage par rapport à note visée</div> -->
+       
     </div>
     <div id="guitar-content"> 
-        <button class="button-tuner" id="string1" (click)="tuningWithNote('E', 3,1)" [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">E<sub>3</sub></button>
+        <button class="button-tuner" id="string1" (click)="tuningWithNote('E', 3,1)"  [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">E<sub>3</sub></button>
         <button class="button-tuner" id="string2" (click)="tuningWithNote('B', 2,2)" [ngStyle]="{'background-color': buttonActiveList[1]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">B<sub>2</sub></button>
         <button class="button-tuner" id="string3" (click)="tuningWithNote('G', 2,3)" [ngStyle]="{'background-color': buttonActiveList[2]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">G<sub>2</sub></button>
         <button class="button-tuner" id="string4" (click)="tuningWithNote('D', 2,4)" [ngStyle]="{'background-color': buttonActiveList[3]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">D<sub>2</sub></button>
