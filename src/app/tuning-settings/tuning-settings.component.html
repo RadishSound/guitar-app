@@ -1,0 +1,15 @@
+        <div class ="form-content">
+            <div>String n°{{stringTuned.stringNumero}}</div>
+        <mat-form-field id="note-input"  >
+            <mat-label >Note</mat-label>
+            <mat-select value="A" [(ngModel)]="stringTuned.note" name="note">
+                <mat-option *ngFor="let note of noteList" [value]="note">
+                  {{note}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field id="harmonic-input">
+            <mat-label>Harmonic</mat-label>
+            <input matInput value="4" type="number" [(ngModel)]="stringTuned.harmonic" name="harmonic">
+        </mat-form-field>
+    </div>

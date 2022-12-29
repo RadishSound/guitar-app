@@ -7,19 +7,31 @@ import { GuitarTunerComponent } from './guitar-tuner/guitar-tuner.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import{ BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { TuningSettingsComponent } from './tuning-settings/tuning-settings.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GuitarTunerComponent
+    GuitarTunerComponent,
+    TuningSettingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

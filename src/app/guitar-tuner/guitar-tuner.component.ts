@@ -1,4 +1,5 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
+import { Strings } from '../models/Strings';
 import {GuitarTunerService} from '../services/guitar-tuner.service';
 
 
@@ -16,7 +17,16 @@ export class GuitarTunerComponent {
     isStarted = false;
     maticon = "mic_off";
     buttonActiveList = [false,false,false,false,false,false];
-    // stringTuningList = ["E3","B2","G2","D2","A1","E1"];
+    isSetting = false;
+    string1 = this.guitarTunerService.stringList[0];
+    string2 = this.guitarTunerService.stringList[1];
+    string3 = this.guitarTunerService.stringList[2];
+    string4 = this.guitarTunerService.stringList[3];
+    string5 = this.guitarTunerService.stringList[4];
+    string6 = this.guitarTunerService.stringList[5];
+    stringList = this.guitarTunerService.stringList;
+   
+
 
     startTuning() {
       arguments.length
@@ -38,11 +48,11 @@ export class GuitarTunerComponent {
                 }    
         }
 
-    tuningWithNote(note:string, harmonic: number, string: number) {
+    tuningWithNote(string: Strings) {
       
-        this.guitarTunerService.tuningWithNote(note, harmonic, string);
+        this.guitarTunerService.tuningWithNote(string.note, string.harmonic, string.stringNumero);
         for (let index = 0; index < this.buttonActiveList.length; index++) {
-          if(index === string-1){
+          if(index === string.stringNumero-1){
             this.buttonActiveList[index]=true;
 
           }else{
@@ -51,6 +61,28 @@ export class GuitarTunerComponent {
           }
         }
 
+    }
+    setTunedForm(string: Strings){
+      let str = document.getElementById("string1");
+      if(str){
+        str.style.backgroundColor = "blue";
+      }
+    }
+    setTuned(){
+      this.isSetting = true;
+      this.isStarted = false;
+    }
+    isSet(){
+      this.isSetting = false;
+      this.startTuning();
+    }
+    setMiBemolTuning(){
+      this.string1.note = "D#";
+      this.string2.note = "A#";
+      this.string3.note = "F#";
+      this.string4.note = "C#";
+      this.string5.note = "G#";
+      this.string6.note = "D#";
     }
 }
   

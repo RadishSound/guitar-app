@@ -1,5 +1,6 @@
 import { IsFocusableConfig } from '@angular/cdk/a11y';
 import { Injectable } from '@angular/core';
+import { Strings } from '../models/Strings';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,15 @@ export class GuitarTunerService {
   harmonicTarget!: number;
   stringFocus!: number;
   noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-  tuningThreshold = 20;
+  tuningThreshold = 10;
+  string1 = new Strings("E",3,1);
+  string2 = new Strings("B",2,2);
+  string3 = new Strings("G",2,3);
+  string4 = new Strings("D",2,4);
+  string5 = new Strings("A",1,5);
+  string6 = new Strings("E",1,6);
+  stringList = [this.string1,this.string2,this.string3,this.string4,this.string5,this.string6]
+
 
   stop(){
     this.audioContext.suspend(); 
@@ -167,7 +176,7 @@ export class GuitarTunerService {
             frequence.innerText = frequenceToDisplay+" Hz";
               }
           if(offset){
-            offset.innerText = offsetPlayed.toString();
+            offset.innerText = offsetPlayed.toFixed(1);
               }
           if(arrow){
             arrow.style.transform = `rotate(${this.arrowRotation(offsetPlayed)}deg)`;

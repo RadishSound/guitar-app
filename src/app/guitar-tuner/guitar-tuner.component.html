@@ -13,14 +13,28 @@
        
     </div>
     <div id="guitar-content"> 
-        <button class="button-tuner" id="string1" (click)="tuningWithNote('E', 3,1)"  [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">E<sub>3</sub></button>
-        <button class="button-tuner" id="string2" (click)="tuningWithNote('B', 2,2)" [ngStyle]="{'background-color': buttonActiveList[1]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">B<sub>2</sub></button>
-        <button class="button-tuner" id="string3" (click)="tuningWithNote('G', 2,3)" [ngStyle]="{'background-color': buttonActiveList[2]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">G<sub>2</sub></button>
-        <button class="button-tuner" id="string4" (click)="tuningWithNote('D', 2,4)" [ngStyle]="{'background-color': buttonActiveList[3]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">D<sub>2</sub></button>
-        <button class="button-tuner" id="string5" (click)="tuningWithNote('A', 1,5)" [ngStyle]="{'background-color': buttonActiveList[4]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">A<sub>1</sub></button>
-        <button class="button-tuner" id="string6" (click)="tuningWithNote('E', 1,6)" [ngStyle]="{'background-color': buttonActiveList[5]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">E<sub>1</sub></button>
+        <button class="button-tuner" id="string1" (click)="tuningWithNote(string1)" (dblclick)="setTunedForm(string1)" [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string1.note}}<sub>{{string1.harmonic}}</sub></button>
+        <button class="button-tuner" id="string2" (click)="tuningWithNote(string2)" [ngStyle]="{'background-color': buttonActiveList[1]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string2.note}}<sub>{{string2.harmonic}}</sub></button>
+        <button class="button-tuner" id="string3" (click)="tuningWithNote(string3)" [ngStyle]="{'background-color': buttonActiveList[2]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string3.note}}<sub>{{string3.harmonic}}</sub></button>
+        <button class="button-tuner" id="string4" (click)="tuningWithNote(string4)" [ngStyle]="{'background-color': buttonActiveList[3]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string4.note}}<sub>{{string4.harmonic}}</sub></button>
+        <button class="button-tuner" id="string5" (click)="tuningWithNote(string5)" [ngStyle]="{'background-color': buttonActiveList[4]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string5.note}}<sub>{{string5.harmonic}}</sub></button>
+        <button class="button-tuner" id="string6" (click)="tuningWithNote(string6)" [ngStyle]="{'background-color': buttonActiveList[5]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string6.note}}<sub>{{string6.harmonic}}</sub></button>
     </div>
     <div>
-        <button id="start-tuner-button" (click) = "startTuning()" ><mat-icon [fontIcon]="maticon"></mat-icon></button>
+        <button class="action-button" (click) = "startTuning()" ><mat-icon [fontIcon]="maticon"></mat-icon></button>
+    </div>
+    <button id="settings-button" (click)="setTuned()"><mat-icon>settings</mat-icon></button>
+    <div id="form-setting" *ngIf="isSetting">
+        <div id="form-setting-content">
+            <div id="tuning-setting-content">
+                 <app-tuning-settings *ngFor="let string of stringList " [stringTuned]="string"></app-tuning-settings>
+            </div>
+            <button class="action-button" id = "tuning-validate-button" (click)="isSet()">Save</button>
+
+        </div>
+        <button id="Ebemol-button" (click)="setMiBemolTuning()">Mi bémol</button>
     </div>
 </div>
+
+
+
