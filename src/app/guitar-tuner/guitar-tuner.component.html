@@ -26,13 +26,15 @@
     <button id="settings-button" (click)="setTuned()"><mat-icon>settings</mat-icon></button>
     <div id="form-setting" *ngIf="isSetting">
         <div id="form-setting-content">
+            <h1>Settings</h1>
             <div id="tuning-setting-content">
                  <app-tuning-settings *ngFor="let string of stringList " [stringTuned]="string"></app-tuning-settings>
             </div>
+            <button id="ebemol-button" (click)="setMiBemolTuning()">Mi bémol</button>
+
             <button class="action-button" id = "tuning-validate-button" (click)="isSet()">Save</button>
 
         </div>
-        <button id="Ebemol-button" (click)="setMiBemolTuning()">Mi bémol</button>
     </div>
 </div>
 
