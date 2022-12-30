@@ -13,7 +13,7 @@
        
     </div>
     <div id="guitar-content"> 
-        <button class="button-tuner" id="string1" (click)="tuningWithNote(string1)" (dblclick)="setTunedForm(string1)" [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string1.note}}<sub>{{string1.harmonic}}</sub></button>
+        <button class="button-tuner" id="string1" (click)="tuningWithNote(string1)" [ngStyle]="{'background-color': buttonActiveList[0]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string1.note}}<sub>{{string1.harmonic}}</sub></button>
         <button class="button-tuner" id="string2" (click)="tuningWithNote(string2)" [ngStyle]="{'background-color': buttonActiveList[1]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string2.note}}<sub>{{string2.harmonic}}</sub></button>
         <button class="button-tuner" id="string3" (click)="tuningWithNote(string3)" [ngStyle]="{'background-color': buttonActiveList[2]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string3.note}}<sub>{{string3.harmonic}}</sub></button>
         <button class="button-tuner" id="string4" (click)="tuningWithNote(string4)" [ngStyle]="{'background-color': buttonActiveList[3]? 'rgb(67, 73, 67)': 'rgb(117, 209, 117)'}">{{string4.note}}<sub>{{string4.harmonic}}</sub></button>
@@ -30,10 +30,16 @@
             <div id="tuning-setting-content">
                  <app-tuning-settings *ngFor="let string of stringList " [stringTuned]="string"></app-tuning-settings>
             </div>
-            <button id="ebemol-button" (click)="setMiBemolTuning()">Mi bémol</button>
+            <div id="shortcut-settings">
+                <button class="shortcut-button" (click)="setMiBemolTuning()">Mi bémol</button>
+                <button class="shortcut-button" (click)="setStandardTuning()">Standard</button>
 
-            <button class="action-button" id = "tuning-validate-button" (click)="isSet()">Save</button>
+            </div>
+            <div id="form-footer">
 
+                 <button class="action-button" id = "tuning-validate-button" (click)="isSet()">SAVE</button>
+
+            </div>
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@
 *{
     color: black;
     --tuning-validate-color: #5bca4f;
+    
 
 }
 #tuner-content{
@@ -218,12 +219,15 @@ border: solid 2px #0066cc;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    height: 70%;
     
 }
 #tuning-validate-button{
 
     background-color: var(--tuning-validate-color);
     border: 2px solid var(--tuning-validate-color);
+    margin-right: 20px;
+
 }
 #tuning-validate-button:hover{
 
@@ -235,7 +239,8 @@ border: solid 2px #0066cc;
     border: solid 2px var(--tuning-validate-color);
     }
 
-    #ebemol-button {
+
+    .shortcut-button {
         box-shadow:inset 0px 1px 3px 0px #91b8b3;
         background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
         background-color:#768d87;
@@ -250,13 +255,45 @@ border: solid 2px #0066cc;
         padding:11px 23px;
         text-decoration:none;
         text-shadow:0px -1px 0px #2b665e;
+        margin-right: 20px;
     }
-    #ebemol-button:hover {
+    .shortcut-button:hover {
         background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
         background-color:#6c7c7c;
     }
-    #ebemol-button:active {
+    .shortcut-button:active {
         position:relative;
         top:1px;
     }
     
+    #shortcut-settings{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+    }
+    #form-footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        
+    }
+
+    @media (max-width: 1240px) { 
+        #tuning-setting-content{
+            overflow-y: scroll;
+        }
+     }
+
+     
+    @media (max-width: 400px) { 
+        #tuning-setting-content{
+      
+        }
+        #form-setting-content{
+            width: 90%;
+        }
+    }

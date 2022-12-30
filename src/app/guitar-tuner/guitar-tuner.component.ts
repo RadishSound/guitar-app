@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input} from '@angular/core';
 import { Strings } from '../models/Strings';
 import {GuitarTunerService} from '../services/guitar-tuner.service';
@@ -25,7 +26,11 @@ export class GuitarTunerComponent {
     string5 = this.guitarTunerService.stringList[4];
     string6 = this.guitarTunerService.stringList[5];
     stringList = this.guitarTunerService.stringList;
+    currentsetting!: Strings[];
    
+    ngOnInit(){
+      this.currentsetting = this.stringList;
+    }
 
 
     startTuning() {
@@ -62,12 +67,7 @@ export class GuitarTunerComponent {
         }
 
     }
-    setTunedForm(string: Strings){
-      let str = document.getElementById("string1");
-      if(str){
-        str.style.backgroundColor = "blue";
-      }
-    }
+    
     setTuned(){
       this.isSetting = true;
       this.isStarted = false;
@@ -83,6 +83,33 @@ export class GuitarTunerComponent {
       this.string4.note = "C#";
       this.string5.note = "G#";
       this.string6.note = "D#";
+      this.string1.harmonic=3;
+      this.string2.harmonic=2;
+      this.string3.harmonic=2;
+      this.string4.harmonic=2;
+      this.string5.harmonic=1;
+      this.string6.harmonic=1;
+    }
+    cancelSettings(){
+      this.isSetting = false;
+      console.log(this.currentsetting);
+
+
+    }
+    setStandardTuning(){
+      this.string1.note = "E";
+      this.string1.harmonic=3;
+      this.string2.note = "B";
+      this.string2.harmonic=2;
+      this.string3.note = "G";
+      this.string3.harmonic=2;
+      this.string4.note = "D";
+      this.string4.harmonic=2;
+      this.string5.note = "A";
+      this.string5.harmonic=1;
+      this.string6.note = "E";
+      this.string6.harmonic=1;
+
     }
 }
   
