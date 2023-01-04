@@ -1,0 +1,23 @@
+*{
+    color: black;
+}
+
+#string-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+button{
+    margin: 3px;
+}
+input{
+    margin: 3px;
+
+}
+#input-range{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

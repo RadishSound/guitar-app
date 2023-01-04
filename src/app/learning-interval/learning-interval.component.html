@@ -1,0 +1,20 @@
+<p>learning-interval works!</p>
+<div>Theory</div>
+<div>Train your ear</div>
+<div id="string-button">
+<button (click)="playSound(0)">E3</button>
+<button (click)="playSound(1)">B2</button>
+<button (click)="playSound(2)">G2</button>
+<button (click)="playSound(3)">D2</button>
+<button (click)="playSound(4)">A1</button>
+<button (click)="playSound(5)">E1</button>
+</div>
+<div id="input-range">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringE3.playbackRate" (input)="stringE3.playbackRate = getValue($event)">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringB2.playbackRate" (input)="stringB2.playbackRate = getValue($event)">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringG2.playbackRate" (input)="stringG2.playbackRate = getValue($event)">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringD2.playbackRate" (input)="stringD2.playbackRate = getValue($event)">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringA1.playbackRate" (input)="stringA1.playbackRate = getValue($event)">
+<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringE1.playbackRate" (input)="stringE1.playbackRate = getValue($event)">
+
+</div>

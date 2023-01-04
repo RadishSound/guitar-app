@@ -41,7 +41,10 @@
     width: 100%;
     overflow: hidden;
     height: 80%;
-
-
   }
-  
+  #router-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

@@ -12,6 +12,7 @@ import { MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { TuningSettingsComponent } from './tuning-settings/tuning-settings.component';
+import { LearningIntervalComponent } from './learning-interval/learning-interval.component';
 
 
 
@@ -20,7 +21,8 @@ import { TuningSettingsComponent } from './tuning-settings/tuning-settings.compo
   declarations: [
     AppComponent,
     GuitarTunerComponent,
-    TuningSettingsComponent
+    TuningSettingsComponent,
+    LearningIntervalComponent
   ],
   imports: [
     BrowserModule,
