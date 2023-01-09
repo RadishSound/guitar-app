@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { delay } from 'rxjs';
+import { LearningIntervalService } from '../services/learning-interval.service';
 
 
 @Component({
@@ -10,29 +11,48 @@ import { delay } from 'rxjs';
 })
 export class LearningIntervalComponent {
 
-    audioContext = new AudioContext();
 
-    intensiteHarmocique = [7.5042,2.9335,1.2049,0.3264];
-    stringE3 = new Audio('../assets/sound/E3.m4a');
-    stringB2 = new Audio('../assets/sound/B2.m4a');
-    stringG2 = new Audio('../assets/sound/G2.m4a');
-    stringD2 = new Audio('../assets/sound/D2.m4a');
-    stringA1 = new Audio('../assets/sound/A1.m4a');
-    stringE1 = new Audio('../assets/sound/E1.m4a');
-    string = [this.stringE3,this.stringB2,this.stringG2,this.stringD2,this.stringA1,this.stringE1];
+    fretPlaybackRateList !: number[];
+    stringList!: AudioBuffer[];
+    audioContext!: AudioContext;
+    nombreQuestion!: number;
+    vitesseIntervalle!: number;
+    intervalleListSetting!: boolean[];
+    intervalleNameList!: String[];
+    typeIntervalleListSetting!: boolean[];
 
+
+    constructor(private learningIntervalService: LearningIntervalService, private router: Router){
+
+    }
 
      ngOnInit(){
-      this.stringE3.playbackRate = this.stringE3.playbackRate*0.749;
-     }
+      this.audioContext = this.learningIntervalService.audioContext;
+      this.fretPlaybackRateList = this.learningIntervalService.fretPlaybackRateList;
+       this.learningIntervalService.fetchSound();
+       this.stringList = this.learningIntervalService.stringList;
+       this.nombreQuestion = this.learningIntervalService.nombreQuestion;
+       this.vitesseIntervalle = this.learningIntervalService.vitesseIntervalle;
+       this.intervalleListSetting = this.learningIntervalService.intervalleListSetting;
+       this.intervalleNameList = this.learningIntervalService.intervalleNameList;
 
-    playSound(numero: number){
- 
-      this.string[numero].preservesPitch = false;
+       this.typeIntervalleListSetting = this.learningIntervalService.typeIntervalleListSetting;
 
-      this.string[numero].play();
+      }
+
+    playSound(){
+      this.learningIntervalService.playIntervalleSound(2,5,5);
     }
     
+    startQuiz(){
+      this.learningIntervalService.vitesseIntervalle = this.vitesseIntervalle;
+      this.learningIntervalService.nombreQuestion = this.nombreQuestion;
+      this.learningIntervalService.intervalleListSetting = this.intervalleListSetting;
+      this.learningIntervalService.typeIntervalleListSetting = this.typeIntervalleListSetting;
+      console.log(this.learningIntervalService.intervalleListSetting[0])
+      this.router.navigateByUrl('/question');
+
+    }
   
 
     getValue(event: Event): number {

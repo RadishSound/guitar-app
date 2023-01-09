@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Strings } from '../models/Strings';
+import { Notes } from '../models/Notes';
 
 @Component({
   selector: 'app-tuning-settings',
@@ -9,6 +9,6 @@ import { Strings } from '../models/Strings';
 export class TuningSettingsComponent {
 
   noteList = ["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"];
-  @Input() stringTuned!: Strings;
+  @Input() stringTuned!: Notes;
 
 }

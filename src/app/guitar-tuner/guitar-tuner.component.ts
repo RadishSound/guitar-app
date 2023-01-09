@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input} from '@angular/core';
-import { Strings } from '../models/Strings';
+import { Notes } from '../models/Notes';
 import {GuitarTunerService} from '../services/guitar-tuner.service';
 
 
@@ -26,7 +26,7 @@ export class GuitarTunerComponent {
     string5 = this.guitarTunerService.stringList[4];
     string6 = this.guitarTunerService.stringList[5];
     stringList = this.guitarTunerService.stringList;
-    currentsetting!: Strings[];
+    currentsetting!: Notes[];
    
     ngOnInit(){
       this.currentsetting = this.stringList;
@@ -53,7 +53,7 @@ export class GuitarTunerComponent {
                 }    
         }
 
-    tuningWithNote(string: Strings) {
+    tuningWithNote(string: Notes) {
       
         this.guitarTunerService.tuningWithNote(string.note, string.harmonic, string.stringNumero);
         for (let index = 0; index < this.buttonActiveList.length; index++) {

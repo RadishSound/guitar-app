@@ -1,0 +1,35 @@
+<div id="container">
+    <div id="question-container">
+
+
+        <div id="header">
+
+            <button class="mat-icon-button material-symbols-outlined" (click)="returnQuizMenu()"><mat-icon
+                    fontIcon="home"></mat-icon></button>
+            <div id="title">
+                QUIZZ
+            </div>
+
+            <div id="numero-question">{{numeroQuestion}}/{{questionList.length}}</div>
+
+        </div>
+        <div id="question">
+            <label class="answer-radio-button" *ngFor="let intervalle of answersIntervalleList "
+                [ngStyle]="{'color': (currentQuestion.isAnswered && intervalle === currentResponse)? 'rgb(0,200,0)' : 'black' }">
+                <input type="radio" name="radio" (change)="currentAnswer = intervalle" />
+                {{intervalle}}
+
+            </label>
+
+        </div>
+        <div id="footer">
+            <button class="mat-icon-button" (click)="replaySound()"><mat-icon fontIcon="refresh"></mat-icon></button>
+            <button id = "validate-button" (click)="validate()">VALIDER</button>
+            <button class="mat-icon-button" (click)="nextQuestion()" [disabled]="isFinished" ><mat-icon
+                    fontIcon="arrow_forward_ios"></mat-icon></button>
+
+
+
+        </div>
+    </div>
+</div>

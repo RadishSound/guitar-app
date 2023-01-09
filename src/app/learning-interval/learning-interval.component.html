@@ -1,4 +1,4 @@
-<p>learning-interval works!</p>
+<!-- <p>learning-interval works!</p>
 <div>Theory</div>
 <div>Train your ear</div>
 <div id="string-button">
@@ -16,5 +16,66 @@
 <input  type="range" min = "0" max="3" step = "0.1" [value]= "stringD2.playbackRate" (input)="stringD2.playbackRate = getValue($event)">
 <input  type="range" min = "0" max="3" step = "0.1" [value]= "stringA1.playbackRate" (input)="stringA1.playbackRate = getValue($event)">
 <input  type="range" min = "0" max="3" step = "0.1" [value]= "stringE1.playbackRate" (input)="stringE1.playbackRate = getValue($event)">
+
+</div> -->
+
+<div id="container">
+    <div id="quizz-launcher">
+        <div id="launch-title">
+            QUIZZ
+        </div>
+        <div id="quizz-setting">
+            <h2>TYPE</h2>
+
+            <div class="pre-settings">
+                <label class="control control-checkbox">
+                    Descendant
+                    <input type="checkbox" [checked] = "typeIntervalleListSetting[0]" (change)="typeIntervalleListSetting[0] = !typeIntervalleListSetting[0]"/>
+                    <div class="control_indicator"></div>
+                </label>
+                <label class="control control-checkbox">
+                    Ascendant
+                    <input type="checkbox" [checked] = "typeIntervalleListSetting[1]" (change)="typeIntervalleListSetting[1] = !typeIntervalleListSetting[1]" />
+                    <div class="control_indicator"></div>
+                </label>
+                <label class="control control-checkbox">
+                    Harmonie
+                    <input type="checkbox" [checked] = "typeIntervalleListSetting[2]" (change)="typeIntervalleListSetting[2] = !typeIntervalleListSetting[2]" />
+                    <div class="control_indicator"></div>
+                </label>
+
+            </div>
+            <h2>INTERVALLES</h2>
+
+            <div class="intervalle-settings">
+                <label class="control control-checkbox" *ngFor="let index = index; let intervalle of intervalleNameList ">
+                    {{intervalle}}
+                    <input type="checkbox" [checked] = "intervalleListSetting[index]" (change)="intervalleListSetting[index] = !intervalleListSetting[index]" />
+                    <div class="control_indicator"></div>
+                </label>
+            
+            </div>
+            <h2>AUTRES</h2>
+
+            <div class="pre-settings">
+                <label>
+                    Vitesse :
+                    <input [(ngModel)] = "vitesseIntervalle" type="range" min="0.2" max="3" step="0.1">
+                </label>
+                <label>
+                    Nombre de question :
+                    <input [(ngModel)] = "nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1" min="0" max="100" step="1">
+                </label>
+
+            </div>
+
+        </div>
+        <div id="launch-bottom">
+            <button id="launch-button" (click)="startQuiz()">START</button>
+
+
+        </div>
+
+    </div>
 
 </div>

@@ -13,6 +13,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { TuningSettingsComponent } from './tuning-settings/tuning-settings.component';
 import { LearningIntervalComponent } from './learning-interval/learning-interval.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { QuestionComponent } from './question/question.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { ResultatIntervalleQuizComponent } from './resultat-intervalle-quiz/resultat-intervalle-quiz.component';
+
 
 
 
@@ -22,7 +27,9 @@ import { LearningIntervalComponent } from './learning-interval/learning-interval
     AppComponent,
     GuitarTunerComponent,
     TuningSettingsComponent,
-    LearningIntervalComponent
+    LearningIntervalComponent,
+    QuestionComponent,
+    ResultatIntervalleQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,9 @@ import { LearningIntervalComponent } from './learning-interval/learning-interval
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
