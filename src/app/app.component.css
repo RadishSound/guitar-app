@@ -67,3 +67,12 @@
   .navigate-button:hover{
     background-color: #787878;
   }
+
+  @media (max-width: 600px) { 
+   
+
+    .sidenav {
+      background-color: #a8a6a6;
+      width: 40%
+    }
+}

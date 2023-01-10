@@ -35,14 +35,7 @@
     width: 80%;
 
 }
-#header-content{ 
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    align-items: center;
 
-
-}
 
 
 #footer{
@@ -70,7 +63,7 @@
     width:  80%;
     height: 60%;
     border-bottom: solid rgba(184, 182, 182, 0.585) 4px; 
-    
+    overflow: auto;
 
 }
 .answer-radio-button{
@@ -81,4 +74,22 @@
     font-size: 20px;
     cursor: pointer;
     
+}
+
+@media (max-width: 600px) { 
+   
+
+    #title {
+      font-size: 15px;
+    }
+    #numero-question{
+        font-size: 10px;
+
+    }
+    .answer-radio-button{
+        font-size: 12px;
+    }
+    #checkbox-setting{
+        width: 70%;
+    }
 }

@@ -7,7 +7,7 @@
             <div class="paragraph">TYPE</div>
 
             <div class="pre-settings">
-                <label class="control control-checkbox" *ngFor="let index = index; let type of typeIntervalleNameList ">
+                <label class="control control-checkbox checkbox-setting" *ngFor="let index = index; let type of typeIntervalleNameList ">
                     {{type}}
                     <input type="checkbox" [checked] = "typeIntervalleListSetting[index]" (change)="typeIntervalleListSetting[index] = !typeIntervalleListSetting[index]" />
                     <div class="control_indicator"></div>
@@ -17,7 +17,7 @@
             <div class="paragraph">INTERVALLES</div>
 
             <div class="intervalle-settings">
-                <label class="control control-checkbox" *ngFor="let index = index; let intervalle of intervalleNameList ">
+                <label class="control control-checkbox checkbox-setting" *ngFor="let index = index; let intervalle of intervalleNameList ">
                     {{intervalle}}
                     <input type="checkbox" [checked] = "intervalleListSetting[index]" (change)="intervalleListSetting[index] = !intervalleListSetting[index]" />
                     <div class="control_indicator"></div>

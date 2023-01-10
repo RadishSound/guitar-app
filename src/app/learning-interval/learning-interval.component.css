@@ -1,26 +1,6 @@
 *{
     color: black;
 }
-/* 
-#string-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-}
-button{
-    margin: 3px;
-}
-input{
-    margin: 3px;
-
-}
-#input-range{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
 
 #container {
     display: flex;
@@ -101,8 +81,7 @@ font-size: 20px;
     flex-wrap: wrap;
     height: 25%;
     width: 100%;
-    margin-left: 5%;
-
+    overflow-y: auto;
 
 }
 .control {
@@ -221,4 +200,13 @@ font-size: 20px;
 .inputNumber{
     border: none;
     text-align: center;
+}
+.checkbox-setting{
+    padding-right: 10px;
+}
+@media (max-width: 600px) { 
+
+    #quizz-launcher{
+        width:70%;
+    }
 }

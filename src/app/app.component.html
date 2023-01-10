@@ -1,9 +1,9 @@
 <mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer #drawer class="sidenav" mode="over">
   
     <div id="router-content">
-    <a class="navigate-button" routerLink="/guitar-tuner">Guitar Tuner</a>
-    <a class="navigate-button" routerLink="/learning-interval">Learn Interval</a>
+    <a class="navigate-button" routerLink="/guitar-tuner" (click)="drawer.toggle()">Guitar Tuner</a>
+    <a class="navigate-button" routerLink="/learning-interval" (click)="drawer.toggle()">Learn Interval</a>
   </div>
   </mat-drawer>
 
