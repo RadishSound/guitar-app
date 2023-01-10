@@ -66,8 +66,7 @@
     flex-wrap: wrap;
     width:  80%;
     height: 70%;
-    border-top: solid rgba(121, 121, 121, 0.585) 2px;
-    border-bottom: solid rgba(121, 121, 121, 0.585) 2px;
+    border-bottom: solid rgba(121, 121, 121, 0.585) 2px; 
     
 
 }

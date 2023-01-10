@@ -20,6 +20,7 @@ export class LearningIntervalComponent {
     intervalleListSetting!: boolean[];
     intervalleNameList!: String[];
     typeIntervalleListSetting!: boolean[];
+    typeIntervalleNameList!: String[];
 
 
     constructor(private learningIntervalService: LearningIntervalService, private router: Router){
@@ -35,7 +36,7 @@ export class LearningIntervalComponent {
        this.vitesseIntervalle = this.learningIntervalService.vitesseIntervalle;
        this.intervalleListSetting = this.learningIntervalService.intervalleListSetting;
        this.intervalleNameList = this.learningIntervalService.intervalleNameList;
-
+       this.typeIntervalleNameList = this.learningIntervalService.typeIntervalleNameList;
        this.typeIntervalleListSetting = this.learningIntervalService.typeIntervalleListSetting;
 
       }

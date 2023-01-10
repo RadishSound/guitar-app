@@ -1,24 +1,3 @@
-<!-- <p>learning-interval works!</p>
-<div>Theory</div>
-<div>Train your ear</div>
-<div id="string-button">
-<button (click)="playSound(0)">E3</button>
-<button (click)="playSound(1)">B2</button>
-<button (click)="playSound(2)">G2</button>
-<button (click)="playSound(3)">D2</button>
-<button (click)="playSound(4)">A1</button>
-<button (click)="playSound(5)">E1</button>
-</div>
-<div id="input-range">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringE3.playbackRate" (input)="stringE3.playbackRate = getValue($event)">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringB2.playbackRate" (input)="stringB2.playbackRate = getValue($event)">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringG2.playbackRate" (input)="stringG2.playbackRate = getValue($event)">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringD2.playbackRate" (input)="stringD2.playbackRate = getValue($event)">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringA1.playbackRate" (input)="stringA1.playbackRate = getValue($event)">
-<input  type="range" min = "0" max="3" step = "0.1" [value]= "stringE1.playbackRate" (input)="stringE1.playbackRate = getValue($event)">
-
-</div> -->
-
 <div id="container">
     <div id="quizz-launcher">
         <div id="launch-title">
@@ -28,19 +7,9 @@
             <h2>TYPE</h2>
 
             <div class="pre-settings">
-                <label class="control control-checkbox">
-                    Descendant
-                    <input type="checkbox" [checked] = "typeIntervalleListSetting[0]" (change)="typeIntervalleListSetting[0] = !typeIntervalleListSetting[0]"/>
-                    <div class="control_indicator"></div>
-                </label>
-                <label class="control control-checkbox">
-                    Ascendant
-                    <input type="checkbox" [checked] = "typeIntervalleListSetting[1]" (change)="typeIntervalleListSetting[1] = !typeIntervalleListSetting[1]" />
-                    <div class="control_indicator"></div>
-                </label>
-                <label class="control control-checkbox">
-                    Harmonie
-                    <input type="checkbox" [checked] = "typeIntervalleListSetting[2]" (change)="typeIntervalleListSetting[2] = !typeIntervalleListSetting[2]" />
+                <label class="control control-checkbox" *ngFor="let index = index; let type of typeIntervalleNameList ">
+                    {{type}}
+                    <input type="checkbox" [checked] = "typeIntervalleListSetting[index]" (change)="typeIntervalleListSetting[index] = !typeIntervalleListSetting[index]" />
                     <div class="control_indicator"></div>
                 </label>
 

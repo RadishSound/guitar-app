@@ -10,21 +10,20 @@ import { LearningIntervalService } from '../services/learning-interval.service';
 })
 export class QuestionComponent {
 
-  questionList!: Questions[];
-  numeroQuestion!: number;
   currentQuestion!: Questions;
   answersIntervalleList  = new Array();
   currentAnswer!: string;
   currentResponse!: string;
   isFinished = false;
+  questionList!: Questions[];
   constructor(private learningIntervalService : LearningIntervalService, private router: Router){
 
   }
 
     ngOnInit(){
-      this.questionList = this.learningIntervalService.createQuestion();
+      this.learningIntervalService.createQuestion();
+      this.questionList = this.learningIntervalService.questionList;
       this.currentQuestion = this.questionList[0];
-      this.numeroQuestion = 1;
       this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference,this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
       for(let intervalle = 0; intervalle<this.learningIntervalService.intervalleNameList.length; intervalle++){
         if(this.learningIntervalService.intervalleListSetting[intervalle]){
@@ -51,6 +50,7 @@ export class QuestionComponent {
       
 
         this.currentQuestion.isAnswered = true;
+        this.currentQuestion.answer = this.currentAnswer;
       
       if(this.currentAnswer === this.currentResponse){
           this.currentQuestion.isCorrect = true;
@@ -60,7 +60,9 @@ export class QuestionComponent {
       }
 
       if(this.isFinished){
+        this.learningIntervalService.questionList = this.questionList;
         this.router.navigateByUrl('/resultat');
+
 
       }
       
@@ -69,13 +71,11 @@ export class QuestionComponent {
 
     }
     nextQuestion(){
-      this.numeroQuestion++;
-      console.log(this.numeroQuestion);
-      this.currentQuestion = this.questionList[this.numeroQuestion-1];
+      this.currentQuestion = this.questionList[this.currentQuestion.numeroQuestion];
       this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
       this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference,this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
       
-      if(this.numeroQuestion === this.questionList.length){
+      if(this.currentQuestion.numeroQuestion === this.questionList.length){
         console.log("terminer");
         document.getElementById('validate-button')!.innerHTML = "TERMINER";
         this.isFinished = true;

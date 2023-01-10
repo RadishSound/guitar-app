@@ -10,9 +10,12 @@
                 QUIZZ
             </div>
 
-            <div id="numero-question">{{numeroQuestion}}/{{questionList.length}}</div>
+            <div id="numero-question">{{currentQuestion.numeroQuestion}}/{{questionList.length}}</div>
+
 
         </div>
+        <mat-progress-bar mode="determinate" [value]="currentQuestion.numeroQuestion / questionList.length * 100"></mat-progress-bar>
+
         <div id="question">
             <label class="answer-radio-button" *ngFor="let intervalle of answersIntervalleList "
                 [ngStyle]="{'color': (currentQuestion.isAnswered && intervalle === currentResponse)? 'rgb(0,200,0)' : 'black' }">

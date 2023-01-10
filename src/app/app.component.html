@@ -1,10 +1,6 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <!-- <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button> -->
+  
     <div id="router-content">
     <a routerLink="/guitar-tuner">Guitar Tuner</a>
     <a routerLink="/learning-interval">Learn Interval</a>
@@ -12,7 +8,7 @@
   </mat-drawer>
 
   <div class="main-content">
-      <button id="menu-button" (click)="drawer.toggle()">   
+      <button id="menu-button" (click)="drawer.toggle()" [ngStyle]="{'color':'white'}">   
         <mat-icon>menu</mat-icon>
       </button>
       <span id="title">Guitar App</span>

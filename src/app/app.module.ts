@@ -17,8 +17,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { QuestionComponent } from './question/question.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ResultatIntervalleQuizComponent } from './resultat-intervalle-quiz/resultat-intervalle-quiz.component';
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -42,7 +42,9 @@ import { ResultatIntervalleQuizComponent } from './resultat-intervalle-quiz/resu
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

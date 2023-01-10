@@ -28,7 +28,7 @@ input{
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: grey;
+    background-color: white;
 }
 #quizz-launcher{
 
@@ -52,7 +52,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;    
-border-bottom: 2px solid grey;
 
 }
 #launch-bottom{
@@ -61,7 +60,6 @@ border-bottom: 2px solid grey;
     display: flex;
     justify-content: center;
     align-items: center;    
-    border-top: 2px solid grey;
 }
 #launch-button{
     cursor: pointer;
@@ -73,7 +71,10 @@ border-bottom: 2px solid grey;
     justify-content: space-around;
     height: 80%;
     align-items: center;
-    width: 100%;
+    width: 85%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+
 
 
 }

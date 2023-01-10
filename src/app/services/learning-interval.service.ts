@@ -13,11 +13,12 @@ export class LearningIntervalService {
   stringList = new Array(6);
   fretPlaybackRateList = new Array(24);
   vitesseIntervalle = 1;
-  intervalleListSetting = new Array(13);
+  intervalleListSetting = new Array(12);
   typeIntervalleListSetting = [true, true, true];
+  typeIntervalleNameList = ["Descendant", "Ascendant", "Harmonie"];
   nombreQuestion = 20;
   intervalleNameList = ["unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
-
+  questionList!: Questions[];
 
 
   constructor(){
@@ -106,9 +107,8 @@ playIntervalleSound(string: number, fret: number, intervalle: number){
 }
 
 
-createQuestion() : Questions[]{
+createQuestion(){
   let questionList =  new Array();
-  let cpt = 0
   while(questionList.length<this.nombreQuestion){
     let string= Math.round(Math.random()*6);
     let fret= Math.round(Math.random()*23);
@@ -120,20 +120,19 @@ createQuestion() : Questions[]{
         intervalle = -intervalleIndex;
       }
       let question = new Questions(string,fret, intervalle);
-    
-      if(typeIndex === 2){
-        question.isHarmonic = true;
-      }
+      question.typeInterval = typeIndex;
+      question.typeIntervalName = this.typeIntervalleNameList[typeIndex];
+      question.nameInterval = this.intervalleNameList[Math.abs(intervalle)];
+      question.numeroQuestion = questionList.length+1;
+
       if(0<fret+intervalle && fret+intervalle<24){
         questionList.push(question);
-
       }
     }
       
   }
+  this.questionList = questionList;
 
-  console.log(questionList);
-  return questionList;
 }
 
 

@@ -7,7 +7,6 @@ import { ResultatIntervalleQuizComponent } from './resultat-intervalle-quiz/resu
 
 const routes: Routes = [ 
 { path: '', component: GuitarTunerComponent },
-
 { path: 'guitar-tuner', component: GuitarTunerComponent },
 { path: 'learning-interval', component: LearningIntervalComponent },
 { path: 'question', component: QuestionComponent },
