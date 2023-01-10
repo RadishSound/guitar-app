@@ -95,8 +95,8 @@ background-repeat: no-repeat;
 .button-tuner{
     position:relative;
     border-radius: 50%;
-    border: rgb(8, 117, 8) 3px solid;
-    background-color: rgb(117, 209, 117);
+    border: rgb(0, 0, 0) 3px solid;
+    background-color: rgb(120, 120, 120);
     color: white;
     height: 57px;
     width: 64.63px;
@@ -173,7 +173,7 @@ border: solid 2px #0066cc;
 #note-played{
     font-size: 20px;
     color: black;
-    background-color: grey;
+    background-color: rgb(39, 39, 39);
 }
 
 #settings-button{
@@ -181,8 +181,9 @@ border: solid 2px #0066cc;
     border: none;
     background-color: rgba(255,255,255,0);
     cursor: pointer;
-    top: 100px;
-    right: 50px;
+    top: 15%;
+    right: 5%;
+    transform: scale(2);
 }
 
 #form-setting{

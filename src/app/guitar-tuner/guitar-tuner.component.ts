@@ -34,7 +34,6 @@ export class GuitarTunerComponent {
 
 
     startTuning() {
-      arguments.length
       this.isStarted = !this.isStarted;
       // console.log(this.isStarted);
       if(this.isStarted){

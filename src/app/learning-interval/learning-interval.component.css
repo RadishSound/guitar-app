@@ -52,6 +52,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;    
+font-size: 20px;
 
 }
 #launch-bottom{
@@ -59,7 +60,12 @@ text-align: center;
     height: 10%;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center; 
+       
+}
+.paragraph {
+    font-size: 15px;
+    border-bottom: solid rgb(59, 59, 59) 2px;
 }
 #launch-button{
     cursor: pointer;

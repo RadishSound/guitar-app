@@ -7,7 +7,7 @@
             <button class="mat-icon-button material-symbols-outlined" (click)="returnQuizMenu()"><mat-icon
                     fontIcon="home"></mat-icon></button>
             <div id="title">
-                QUIZZ
+                Trouve le bon intervalle !
             </div>
 
             <div id="numero-question">{{currentQuestion.numeroQuestion}}/{{questionList.length}}</div>
@@ -27,8 +27,8 @@
         </div>
         <div id="footer">
             <button class="mat-icon-button" (click)="replaySound()"><mat-icon fontIcon="refresh"></mat-icon></button>
-            <button id = "validate-button" (click)="validate()">VALIDER</button>
-            <button class="mat-icon-button" (click)="nextQuestion()" [disabled]="isFinished" ><mat-icon
+            <button mat-raised-button id="launch-button" id = "validate-button" (click)="validate()"  color="primary" >VALIDER</button>
+            <button class="mat-icon-button" id = "next-button"(click)="nextQuestion()" [disabled]="isFinished" ><mat-icon
                     fontIcon="arrow_forward_ios"></mat-icon></button>
 
 

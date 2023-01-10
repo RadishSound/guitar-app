@@ -159,7 +159,8 @@ export class GuitarTunerService {
           if(this.isTuned(tunedCount,noteToDisplay)){
             const string = <HTMLButtonElement> document.getElementById(`string${this.stringFocus}`);
                 if(string){
-                  string.style.borderColor= 'gold';
+                  string.style.borderColor= 'rgb(20, 200, 20)';
+
                 }
           }
           console.log(tunedCount);

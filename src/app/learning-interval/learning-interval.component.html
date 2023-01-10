@@ -4,7 +4,7 @@
             QUIZZ
         </div>
         <div id="quizz-setting">
-            <h2>TYPE</h2>
+            <div class="paragraph">TYPE</div>
 
             <div class="pre-settings">
                 <label class="control control-checkbox" *ngFor="let index = index; let type of typeIntervalleNameList ">
@@ -14,7 +14,7 @@
                 </label>
 
             </div>
-            <h2>INTERVALLES</h2>
+            <div class="paragraph">INTERVALLES</div>
 
             <div class="intervalle-settings">
                 <label class="control control-checkbox" *ngFor="let index = index; let intervalle of intervalleNameList ">
@@ -24,12 +24,14 @@
                 </label>
             
             </div>
-            <h2>AUTRES</h2>
+            <div class="paragraph">AUTRES</div>
 
             <div class="pre-settings">
                 <label>
                     Vitesse :
-                    <input [(ngModel)] = "vitesseIntervalle" type="range" min="0.2" max="3" step="0.1">
+                    <mat-slider min="0.2" max="3" step="0.1" >
+                        <input matSliderThumb [(ngModel)] = "vitesseIntervalle">
+                      </mat-slider>
                 </label>
                 <label>
                     Nombre de question :
@@ -40,7 +42,8 @@
 
         </div>
         <div id="launch-bottom">
-            <button id="launch-button" (click)="startQuiz()">START</button>
+            <button mat-raised-button id="launch-button" (click)="startQuiz()"  color="primary" >START</button>
+
 
 
         </div>
