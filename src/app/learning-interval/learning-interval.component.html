@@ -31,12 +31,12 @@
             <div class="pre-settings">
                 <label>
                     Vitesse :
-                    <mat-slider min="3" max="20" step="1" discrete [displayWith]="formatLabel" >
+                    <mat-slider min="3" max="60" step="1" discrete [displayWith]="formatLabel" >
                         <input matSliderThumb [(ngModel)] = "tempsReponse">
                       </mat-slider>
                 </label>
                 <label>
-                    Nombre de question :
+                    Nombre de questions :
                     <input [(ngModel)] = "nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1" min="0" max="100" step="1">
                 </label>
 

@@ -12,13 +12,13 @@ export class LearningIntervalService {
   audioContext = new AudioContext()
   stringList = new Array(6);
   fretPlaybackRateList = new Array(24);
-  tempsReponse = 10;
+  tempsReponse = 20;
   vitesseIntervalle = 1;
   intervalleListSetting = new Array(12);
   typeIntervalleListSetting = [true, true, true];
   typeIntervalleNameList = ["Descendant", "Ascendant", "Harmonie"];
   nombreQuestion = 10;
-  intervalleNameList = ["unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
+  intervalleNameList = ["Unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
   questionList!: Questions[];
 
 

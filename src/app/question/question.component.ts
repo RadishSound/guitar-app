@@ -34,10 +34,10 @@ export class QuestionComponent {
         this.answersIntervalleList.push(this.learningIntervalService.intervalleNameList[intervalle]);
       }
     }
-    console.log(this.questionList.map(q => q.nameInterval));
+    console.log(this.questionList);
     this.currentAnswer = "";
     this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
-    this.currentTimer = -1;
+    this.currentTimer = -2;
     this.barTimer = 'accent';
     this.timer();
 
@@ -48,74 +48,67 @@ export class QuestionComponent {
   }
 
   validate() {
-
-
-    if (this.currentAnswer = "") {
-      console.log("Merci de choisir un intervalle avant de valider");
+    if (this.currentAnswer === "") {
+      console.warn("Merci de choisir un intervalle avant de valider");
     } else {
-      this.currentQuestion.isAnswered = true;
-      this.currentQuestion.answer = this.currentAnswer;
-
-      if (this.currentAnswer === this.currentResponse) {
-        this.currentQuestion.isCorrect = true;
-      } else {
-        this.currentQuestion.isCorrect = false;
-      }
+      this.validateAnswer(this.currentAnswer);
     }
   }
-  nextQuestion() {
 
-    if(this.currentQuestion.isAnswered){
+  nextQuestion() {
+    if (this.currentQuestion.isAnswered) {
       if (this.currentQuestion.numeroQuestion === this.questionList.length) {
-        console.log('fin quizz');
         this.learningIntervalService.questionList = this.questionList;
         this.router.navigateByUrl('/resultat');
-        this.currentTimer = -1;
+        this.currentTimer = -2;
+      } else {
+        this.currentQuestion = this.questionList[this.currentQuestion.numeroQuestion];
+        this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
+        this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference, this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
+        this.timer();
+      }
 
-
-      }else{
-    this.currentQuestion = this.questionList[this.currentQuestion.numeroQuestion];
-    this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
-    this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference, this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
-    this.timer();
-    
-
-    
-  }
-   
-    }    
+    }
   }
   returnQuizMenu() {
     this.router.navigateByUrl('/learning-interval');
 
   }
 
-timer(){
-  this.currentTimer = -1;
-  let validateButton = <HTMLButtonElement>document.getElementById('validate-button');
-  validateButton.disabled = false;
+  timer() {
+    this.currentTimer = -2;
+    let validateButton = <HTMLButtonElement>document.getElementById('validate-button');
+    validateButton.disabled = false;
 
 
-  const timer = setInterval(()=> { 
-      
-    this.currentTimer = +(this.currentTimer + 0.1).toFixed(2);
-    console.log(this.currentTimer)
-    if(this.currentTimer === this.tempsReponse){
-      validateButton.disabled = true;
-      console.log(validateButton);
-      this.currentQuestion.isAnswered = true;
+    const timer = setInterval(() => {
+      this.currentTimer = +(this.currentTimer + 0.1).toFixed(2);
+      if (this.currentTimer === this.tempsReponse) {
+        validateButton.disabled = true;
+         this.validateAnswer("Time out");
+         clearInterval(timer);
+
+      }
+      if (this.currentTimer / this.tempsReponse > 0.8) {
+        this.barTimer = 'warn';
+      }
+
+    }, 100);
+
+  }
+
+  validateAnswer(answer: string) {
+    this.currentQuestion.isAnswered = true;
+    this.currentQuestion.answer = answer;
+
+    if (answer === this.currentResponse) {
+      this.currentQuestion.isCorrect = true;
+    } else {
       this.currentQuestion.isCorrect = false;
-      this.currentQuestion.answer = "Time out";
-      clearInterval(timer);
 
     }
-    if(this.currentTimer/this.tempsReponse >0.8){
-      this.barTimer = 'warn';
-    }
-    
-  },100);
-  
+  }
+
 }
 
 
-}
