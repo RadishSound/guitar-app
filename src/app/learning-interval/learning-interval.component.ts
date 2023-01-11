@@ -16,7 +16,7 @@ export class LearningIntervalComponent {
     stringList!: AudioBuffer[];
     audioContext!: AudioContext;
     nombreQuestion!: number;
-    vitesseIntervalle!: number;
+    tempsReponse!: number;
     intervalleListSetting!: boolean[];
     intervalleNameList!: String[];
     typeIntervalleListSetting!: boolean[];
@@ -33,7 +33,7 @@ export class LearningIntervalComponent {
        this.learningIntervalService.fetchSound();
        this.stringList = this.learningIntervalService.stringList;
        this.nombreQuestion = this.learningIntervalService.nombreQuestion;
-       this.vitesseIntervalle = this.learningIntervalService.vitesseIntervalle;
+       this.tempsReponse = this.learningIntervalService.tempsReponse;
        this.intervalleListSetting = this.learningIntervalService.intervalleListSetting;
        this.intervalleNameList = this.learningIntervalService.intervalleNameList;
        this.typeIntervalleNameList = this.learningIntervalService.typeIntervalleNameList;
@@ -42,7 +42,7 @@ export class LearningIntervalComponent {
       }
 
     startQuiz(){
-      this.learningIntervalService.vitesseIntervalle = this.vitesseIntervalle;
+      this.learningIntervalService.tempsReponse = this.tempsReponse;
       this.learningIntervalService.nombreQuestion = this.nombreQuestion;
       this.learningIntervalService.intervalleListSetting = this.intervalleListSetting;
       this.learningIntervalService.typeIntervalleListSetting = this.typeIntervalleListSetting;
@@ -53,6 +53,10 @@ export class LearningIntervalComponent {
       this.intervalleListSetting = new Array(this.intervalleListSetting.length).fill(false);
       this.typeIntervalleListSetting = new Array(this.typeIntervalleListSetting.length).fill(false);
 
+    }
+    formatLabel(value: number): string {
+
+      return `${value}s`;
     }
 
 }

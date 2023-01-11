@@ -57,7 +57,6 @@
     flex-wrap: wrap;
     width:  80%;
     height: 60%;
-    border-bottom: solid rgba(184, 182, 182, 0.585) 4px; 
     overflow: auto;
 
 }

@@ -12,6 +12,7 @@ export class LearningIntervalService {
   audioContext = new AudioContext()
   stringList = new Array(6);
   fretPlaybackRateList = new Array(24);
+  tempsReponse = 10;
   vitesseIntervalle = 1;
   intervalleListSetting = new Array(12);
   typeIntervalleListSetting = [true, true, true];
