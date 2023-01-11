@@ -35,7 +35,7 @@ export class LearningIntervalService {
   }  
   
   fetchSound(){
-    fetch('../assets/sound/E3.m4a')
+    fetch('../assets/sound/E3.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => {
@@ -43,27 +43,27 @@ export class LearningIntervalService {
     });
 
 
-    fetch('../assets/sound/B2.m4a')
+    fetch('../assets/sound/B2.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => this.stringList[1] = decodeAudio);
 
-    fetch('../assets/sound/G2.m4a')
+    fetch('../assets/sound/G2.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => this.stringList[2] = decodeAudio);
 
-    fetch('../assets/sound/D2.m4a')
+    fetch('../assets/sound/D2.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => this.stringList[3] = decodeAudio);
 
-    fetch('../assets/sound/A1.m4a')
+    fetch('../assets/sound/A1.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => this.stringList[4] = decodeAudio);
 
-    fetch('../assets/sound/E1.m4a')
+    fetch('../assets/sound/E1.mp3')
     .then(data => data.arrayBuffer())
     .then(arrayBuffer => this.audioContext.decodeAudioData(arrayBuffer))
     .then(decodeAudio => this.stringList[5] = decodeAudio);
