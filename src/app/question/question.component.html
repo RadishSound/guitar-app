@@ -14,7 +14,7 @@
 
 
         </div>
-        <mat-progress-bar mode="determinate" [value]="currentQuestion.numeroQuestion / questionList.length * 100"></mat-progress-bar>
+        <mat-progress-bar mode="determinate"  [value]="currentQuestion.numeroQuestion / questionList.length * 100"></mat-progress-bar>
 
         <div id="question">
             <label class="answer-radio-button" *ngFor="let intervalle of answersIntervalleList "
@@ -27,7 +27,7 @@
         </div>
         <div id="footer">
             <button class="mat-icon-button" (click)="replaySound()"><mat-icon fontIcon="refresh"></mat-icon></button>
-            <button mat-raised-button id="launch-button" id = "validate-button" (click)="validate()"  color="primary" >VALIDER</button>
+            <button mat-raised-button id="launch-button" id = "validate-button" (click)="validate()" [ngStyle]="{'background-color': '#0066CC'}" >VALIDER</button>
             <button class="mat-icon-button" id = "next-button"(click)="nextQuestion()" [disabled]="isFinished" ><mat-icon
                     fontIcon="arrow_forward_ios"></mat-icon></button>
 

@@ -16,7 +16,7 @@ export class LearningIntervalService {
   intervalleListSetting = new Array(12);
   typeIntervalleListSetting = [true, true, true];
   typeIntervalleNameList = ["Descendant", "Ascendant", "Harmonie"];
-  nombreQuestion = 20;
+  nombreQuestion = 10;
   intervalleNameList = ["unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
   questionList!: Questions[];
 
@@ -118,6 +118,11 @@ createQuestion(){
       let intervalle = intervalleIndex;
       if(typeIndex === 1){
         intervalle = -intervalleIndex;
+      }
+      if(typeIndex ===2){
+        this.vitesseIntervalle = 0;
+      }else{
+        this.vitesseIntervalle = 1;
       }
       let question = new Questions(string,fret, intervalle);
       question.typeInterval = typeIndex;

@@ -14,6 +14,7 @@ import { LearningIntervalService } from '../services/learning-interval.service';
 export class ResultatIntervalleQuizComponent {
   
   questionList !: Questions[];
+  // questionList = new Array();
   bonneReponse = 0;
   constructor(private learningIntervalService : LearningIntervalService, private router: Router){
 
@@ -21,10 +22,10 @@ export class ResultatIntervalleQuizComponent {
 
   ngOnInit(){
     this.questionList = this.learningIntervalService.questionList;
-    // for(let i =0; i<2; i++){
+    // for(let i =0; i<5; i++){
     //   let q1 = new Questions(2,5,2);
-    //   q1.isCorrect = true;
-    //   q1.numeroQuestion = i;
+    //   q1.isCorrect = false;
+    //   q1.numeroQuestion = i+1;
     //   q1.typeIntervalName = 'Ascendant';
     //   q1.nameInterval = 'seconde majeure';
     //   this.questionList[i] = q1;
@@ -41,6 +42,11 @@ export class ResultatIntervalleQuizComponent {
 
   returnQuizMenu(){
     this.router.navigateByUrl('/learning-interval');
+
+  }
+
+  restartQuiz(){
+    this.router.navigateByUrl('/question');
 
   }
   displayedColumns: string[] = ['numeroQuestion','reponse','correction','type' ];

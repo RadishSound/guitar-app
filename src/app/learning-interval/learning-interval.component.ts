@@ -41,24 +41,18 @@ export class LearningIntervalComponent {
 
       }
 
-    playSound(){
-      this.learningIntervalService.playIntervalleSound(2,5,5);
-    }
-    
     startQuiz(){
       this.learningIntervalService.vitesseIntervalle = this.vitesseIntervalle;
       this.learningIntervalService.nombreQuestion = this.nombreQuestion;
       this.learningIntervalService.intervalleListSetting = this.intervalleListSetting;
       this.learningIntervalService.typeIntervalleListSetting = this.typeIntervalleListSetting;
-      console.log(this.learningIntervalService.intervalleListSetting[0])
       this.router.navigateByUrl('/question');
 
     }
-  
+    removeAllSettings(){
+      this.intervalleListSetting = new Array(this.intervalleListSetting.length).fill(false);
+      this.typeIntervalleListSetting = new Array(this.typeIntervalleListSetting.length).fill(false);
 
-    getValue(event: Event): number {
-      return parseFloat((event.target as HTMLInputElement).value);
     }
-  
 
 }

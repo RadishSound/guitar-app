@@ -4,6 +4,8 @@
             QUIZZ
         </div>
         <div id="quizz-setting">
+            <button id="delete-presetting-button" class="mat-icon-button" (click)="removeAllSettings()"><mat-icon>close</mat-icon></button>
+
             <div class="paragraph">TYPE</div>
 
             <div class="pre-settings">
@@ -27,12 +29,12 @@
             <div class="paragraph">AUTRES</div>
 
             <div class="pre-settings">
-                <label>
+                <!-- <label>
                     Vitesse :
                     <mat-slider min="0.2" max="3" step="0.1" >
                         <input matSliderThumb [(ngModel)] = "vitesseIntervalle">
                       </mat-slider>
-                </label>
+                </label> -->
                 <label>
                     Nombre de question :
                     <input [(ngModel)] = "nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1" min="0" max="100" step="1">
@@ -42,7 +44,7 @@
 
         </div>
         <div id="launch-bottom">
-            <button mat-raised-button id="launch-button" (click)="startQuiz()"  color="primary" >START</button>
+            <button mat-raised-button id="launch-button" (click)="startQuiz()"   [ngStyle]="{'background-color': '#00CC66'}"  >START</button>
 
 
 

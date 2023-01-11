@@ -37,10 +37,12 @@
 #title{
     font-size: 25px;
 }
-
+#score{
+    font-size: 20px;
+}
 #footer{
     width: 80%;
-    height: 10%;
+    height: 15%;
 
     display: flex;
     justify-content: space-between;
@@ -54,9 +56,10 @@
     cursor: pointer;
 }
 
+
 #content{
     width: 80%;
-    height: 80%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

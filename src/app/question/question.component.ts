@@ -30,7 +30,7 @@ export class QuestionComponent {
         this.answersIntervalleList.push(this.learningIntervalService.intervalleNameList[intervalle]);
       }
     }
-    console.log(this.answersIntervalleList);
+    console.log(this.questionList.map(q => q.nameInterval));
     this.currentAnswer = "";
     this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
 
