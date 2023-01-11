@@ -19,6 +19,7 @@ export class QuestionComponent {
   tempsReponse!: number;
   currentTimer!: number;
   barTimer!: string;
+  
   constructor(private learningIntervalService: LearningIntervalService, private router: Router) {
 
   }
@@ -76,17 +77,24 @@ export class QuestionComponent {
   }
 
   timer() {
+
     this.currentTimer = -2;
     let validateButton = <HTMLButtonElement>document.getElementById('validate-button');
     validateButton.disabled = false;
 
 
-    const timer = setInterval(() => {
+     const timer = setInterval(() => {
+      console.log(this.currentTimer);
+
       this.currentTimer = +(this.currentTimer + 0.1).toFixed(2);
       if (this.currentTimer === this.tempsReponse) {
         validateButton.disabled = true;
          this.validateAnswer("Time out");
          clearInterval(timer);
+
+      }
+      if(this.currentQuestion.isAnswered){
+        clearInterval(timer);
 
       }
       if (this.currentTimer / this.tempsReponse > 0.8) {

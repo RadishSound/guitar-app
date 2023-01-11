@@ -42,12 +42,13 @@ export class LearningIntervalComponent {
       }
 
     startQuiz(){
+      if(this.intervalleListSetting.includes(true) && this.typeIntervalleListSetting.includes(true)){
       this.learningIntervalService.tempsReponse = this.tempsReponse;
       this.learningIntervalService.nombreQuestion = this.nombreQuestion;
       this.learningIntervalService.intervalleListSetting = this.intervalleListSetting;
       this.learningIntervalService.typeIntervalleListSetting = this.typeIntervalleListSetting;
       this.router.navigateByUrl('/question');
-
+      }
     }
     removeAllSettings(){
       this.intervalleListSetting = new Array(this.intervalleListSetting.length).fill(false);
