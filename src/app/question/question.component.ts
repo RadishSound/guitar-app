@@ -35,7 +35,6 @@ export class QuestionComponent {
         this.answersIntervalleList.push(this.learningIntervalService.intervalleNameList[intervalle]);
       }
     }
-    console.log(this.questionList);
     this.currentAnswer = "";
     this.currentResponse = this.learningIntervalService.intervalleNameList[Math.abs(this.currentQuestion.interval)];
     this.currentTimer = -2;
@@ -84,7 +83,6 @@ export class QuestionComponent {
 
 
      const timer = setInterval(() => {
-      console.log(this.currentTimer);
 
       this.currentTimer = +(this.currentTimer + 0.1).toFixed(2);
       if (this.currentTimer === this.tempsReponse) {
