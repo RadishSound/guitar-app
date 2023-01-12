@@ -17,11 +17,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    /* border: 2px solid black; */
-    border-radius: 3%;
-    width: 60%;
-    height: 90%;
-    box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.65);
+ 
+    width: 80%;
+    height: 100%;
 
 }
 
@@ -64,7 +62,7 @@ font-size: 20px;
     height: 70%;
     align-items: center;
     width: 85%;
-    border: solid rgba(184, 182, 182, 0.585) 4px; 
+    border: solid rgba(184, 182, 182, 0.585) 3px; 
     border-left: none;
     border-right: none;
 
@@ -209,9 +207,12 @@ font-size: 20px;
 .checkbox-setting{
     padding-right: 10px;
 }
-@media (max-width: 600px) { 
+@media (max-width: 800px) { 
 
     #quizz-launcher{
-        width:70%;
+        width:100%;
+    }
+    #quizz-setting{
+        border: none; 
     }
 }

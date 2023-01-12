@@ -76,3 +76,12 @@
       width: 40%
     }
 }
+
+@media (max-width: 1000px) { 
+   
+
+  .sidenav {
+    background-color: #a8a6a6;
+    width: 20%
+  }
+}

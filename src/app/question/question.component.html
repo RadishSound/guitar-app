@@ -4,7 +4,7 @@
 
         <div id="header">
 
-            <button class="mat-icon-button material-symbols-outlined" (click)="returnQuizMenu()"><mat-icon
+            <button id="home-button" class="mat-icon-button material-symbols-outlined" (click)="returnQuizMenu()"><mat-icon
                     fontIcon="home"></mat-icon></button>
             <div id="title">
                 Trouve l'intervalle joué
@@ -16,13 +16,15 @@
         </div>
         <mat-progress-bar mode="determinate"  [value]="currentQuestion.numeroQuestion / questionList.length * 100"></mat-progress-bar>
 
-        <div id="question">
+        <div id="question-content">
+            <div id="question">
             <label class="answer-radio-button" *ngFor="let intervalle of answersIntervalleList "
                 [ngStyle]="{'color': (currentQuestion.isAnswered && intervalle === currentResponse)? 'rgb(0,200,0)' : 'black' }">
                 <input type="radio" name="radio" (change)="currentAnswer = intervalle" />
                 {{intervalle}}
 
             </label>
+        </div>
 
         </div>
         <mat-progress-bar mode="determinate" [color]="barTimer"  [value]="currentTimer / tempsReponse * 100"></mat-progress-bar>

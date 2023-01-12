@@ -15,13 +15,11 @@
 #question-container{
     background-color:white;
     width: 60%;
-    height: 80%;
-    border-radius: 2%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.65);
 
   
 }
@@ -69,4 +67,16 @@
     width: 100%;
     height: 80%;
    overflow-y: auto;
+}
+@media (max-width: 800px) { 
+
+    #question-container{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;      
+    } 
+    #content{
+        width: 95%;  
+    }
+
 }
