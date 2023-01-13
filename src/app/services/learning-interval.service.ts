@@ -16,7 +16,7 @@ export class LearningIntervalService {
   vitesseIntervalle = 1;
   intervalleListSetting = new Array(12);
   typeIntervalleListSetting = [true, true, true];
-  typeIntervalleNameList = ["Descendant", "Ascendant", "Harmonie"];
+  typeIntervalleNameList = ["Ascendant", "Descendant", "Harmonie"];
   nombreQuestion = 10;
   intervalleNameList = ["Unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
   questionList!: Questions[];

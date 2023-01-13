@@ -1,8 +1,8 @@
         <div class ="form-content">
             <div>String n°{{stringTuned.stringNumero}}</div>
-        <mat-form-field id="note-input"  >
-            <mat-label >Note</mat-label>
-            <mat-select value="A" [(ngModel)]="stringTuned.note" name="note">
+        <mat-form-field id="note-input" appearance="fill">
+            <mat-label >Note</mat-label >
+            <mat-select value="A" [(ngModel)]="stringTuned.note" name="note" >
                 <mat-option *ngFor="let note of noteList" [value]="note">
                   {{note}}
                 </mat-option>

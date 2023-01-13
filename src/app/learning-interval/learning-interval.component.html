@@ -4,14 +4,15 @@
             QUIZZ
         </div>
         <div id="quizz-setting">
-            <button id="delete-presetting-button" class="mat-icon-button" (click)="removeAllSettings()"><mat-icon>close</mat-icon></button>
 
-            <div class="paragraph">TYPE</div>
+            <div class="paragraph">TYPE D'INTERVALLE</div>
 
             <div class="pre-settings">
-                <label class="control control-checkbox checkbox-setting" *ngFor="let index = index; let type of typeIntervalleNameList ">
+                <label class="control control-checkbox checkbox-setting"
+                    *ngFor="let index = index; let type of typeIntervalleNameList ">
                     {{type}}
-                    <input type="checkbox" [checked] = "typeIntervalleListSetting[index]" (change)="typeIntervalleListSetting[index] = !typeIntervalleListSetting[index]" />
+                    <input type="checkbox" [checked]="typeIntervalleListSetting[index]"
+                        (change)="typeIntervalleListSetting[index] = !typeIntervalleListSetting[index]" />
                     <div class="control_indicator"></div>
                 </label>
 
@@ -19,32 +20,40 @@
             <div class="paragraph">INTERVALLES</div>
 
             <div class="intervalle-settings">
-                <label class="control control-checkbox checkbox-setting" *ngFor="let index = index; let intervalle of intervalleNameList ">
+                <label class="control control-checkbox checkbox-setting"
+                    *ngFor="let index = index; let intervalle of intervalleNameList ">
                     {{intervalle}}
-                    <input type="checkbox" [checked] = "intervalleListSetting[index]" (change)="intervalleListSetting[index] = !intervalleListSetting[index]" />
+                    <input type="checkbox" [checked]="intervalleListSetting[index]"
+                        (change)="intervalleListSetting[index] = !intervalleListSetting[index]" />
                     <div class="control_indicator"></div>
                 </label>
-            
+
             </div>
             <div class="paragraph">AUTRES</div>
 
+
             <div class="pre-settings">
                 <label>
-                    Vitesse :
-                    <mat-slider min="3" max="60" step="1" discrete [displayWith]="formatLabel" >
-                        <input matSliderThumb [(ngModel)] = "tempsReponse">
-                      </mat-slider>
+                    Temps pour répondre :
+                    <mat-slider min="3" max="60" step="1" discrete [displayWith]="formatLabel">
+                        <input matSliderThumb [(ngModel)]="tempsReponse">
+                    </mat-slider>
                 </label>
                 <label>
                     Nombre de questions :
-                    <input [(ngModel)] = "nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1" min="0" max="100" step="1">
+                    <input [(ngModel)]="nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1"
+                        min="0" max="100" step="1">
                 </label>
+                <div id="delete-presetting">
+                    <span>Supprimer :</span>
+                    <button class="mat-icon-button" (click)="removeAllSettings()"><mat-icon>close</mat-icon></button>
+                </div>
 
             </div>
-
         </div>
         <div id="launch-bottom">
-            <button mat-raised-button id="launch-button" (click)="startQuiz()"   [ngStyle]="{'background-color': '#00CC66'}"  >START</button>
+            <button mat-raised-button id="launch-button" (click)="startQuiz()"
+                [ngStyle]="{'background-color': '#00CC66'}">START</button>
 
 
 

@@ -18,7 +18,7 @@
 
   #title{
     position: absolute;
-    top: 20px;
+    top: 3%;
     font-size: 40px;
     align-items: center;
   }
@@ -68,20 +68,46 @@
     background-color: #787878;
   }
 
-  @media (max-width: 600px) { 
+  @media (max-width: 1000px) { 
    
 
     .sidenav {
       background-color: #a8a6a6;
-      width: 40%
+      width: 20%
+    }
+  }
+
+  @media (max-width: 650px) { 
+   
+
+    .sidenav {
+      background-color: #a8a6a6;
+      width: 35%
     }
 }
 
-@media (max-width: 1000px) { 
-   
-
-  .sidenav {
-    background-color: #a8a6a6;
-    width: 20%
-  }
+@media (max-height: 600px) { 
+  
+.content{
+  height: 75%;
 }
+
+}
+
+@media (max-height: 400px) { 
+  
+  .content{
+    height: 70%;
+  }
+
+  #title{
+  
+    font-size: 30px;
+  }
+
+  #menu-button{
+    transform: scale(1.5);
+   
+  }
+  }
+
