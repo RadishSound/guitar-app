@@ -35,7 +35,7 @@ export class GuitarTunerService {
 
       this.analyser.minDecibels = -100;
       this.analyser.maxDecibels = -10;
-      this.analyser.smoothingTimeConstant = 0.85;
+      this.analyser.smoothingTimeConstant = 0.5;
       if (!navigator?.mediaDevices?.getUserMedia) {
         // No audio allowed
         alert('Sorry, getUserMedia is required for the app.')
@@ -68,7 +68,7 @@ export class GuitarTunerService {
         this.frequencyTarget = this.frequenceFromIndexNote(indexNoteTuned, this.harmonicTarget );
         this.analyser.minDecibels = -100;
         this.analyser.maxDecibels = -10;
-        this.analyser.smoothingTimeConstant = 0.85;
+        this.analyser.smoothingTimeConstant = 0.5;
         if (!navigator?.mediaDevices?.getUserMedia) {
           // No audio allowed
           alert('Sorry, getUserMedia is required for the app.')
@@ -100,7 +100,7 @@ export class GuitarTunerService {
         let previousNoteToDisplay: string ;
         let smoothingCount = 0;
         let tunedCount = 0;
-        let smoothingCountThreshold = 5;
+        let smoothingCountThreshold = 2;
     
           const drawNote = () => {
           drawNoteVisual = requestAnimationFrame(drawNote);
@@ -110,11 +110,10 @@ export class GuitarTunerService {
           
           var autoCorrelateValue = this.autoCorrelate(buffer, this.audioContext.sampleRate);
           let valueToDisplay = autoCorrelateValue.toString();
-          let noteToDisplay = this.noteStrings[Math.abs(this.noteFromPitch(autoCorrelateValue)) % 12];
-          let harmoniqueToPlay = Math.floor(this.noteFromPitch(autoCorrelateValue) / 12)-2;
-          let frequenceToDisplay = Math.round(parseInt(valueToDisplay));
+          let frequenceToDisplay = parseInt(valueToDisplay);
+          let noteToDisplay = this.noteStrings[Math.abs(this.noteFromPitch(frequenceToDisplay)) % 12];
+          let harmoniqueToPlay = Math.floor(this.noteFromPitch(frequenceToDisplay) / 12)-2;
           let offsetPlayed = (frequenceToDisplay-this.frequencyTarget)*10/(this.frequencyTarget*Math.abs( 1- Math.pow(2,1/12)));
-          
           if (autoCorrelateValue === -1) {
             const note = <HTMLDivElement> document.getElementById('note');
 
@@ -132,19 +131,17 @@ export class GuitarTunerService {
           if (this.noteIsSimilarEnough( frequenceToDisplay, previousFrequenceToDisplay, smoothingCountThreshold)) {
             
 
-            if (smoothingCount < smoothingCountThreshold) {
+            if (smoothingCount < 5) {
               smoothingCount++;
 
-              if(previousNoteToDisplay === this.noteTuned){
-              
+              if(this.frequenceIsSimilarEnoughtWithTarget(previousFrequenceToDisplay)){
                 tunedCount++;
 
               }
               return;
             } else {
               previousFrequenceToDisplay = frequenceToDisplay;
-              previousNoteToDisplay = noteToDisplay;
-            
+              previousNoteToDisplay = noteToDisplay;           
               smoothingCount = 0;
             }
           } else {
@@ -156,14 +153,13 @@ export class GuitarTunerService {
             return;
           }
           
-          if(this.isTuned(tunedCount,noteToDisplay)){
+          if(this.isTuned(tunedCount)){
             const string = <HTMLButtonElement> document.getElementById(`string${this.stringFocus}`);
                 if(string){
                   string.style.borderColor= 'rgb(20, 200, 20)';
 
                 }
           }
-          console.log(tunedCount);
           let note = <HTMLDivElement> document.getElementById('note');
           let frequence = <HTMLDivElement> document.getElementById('frequence');
           let offset = <HTMLDivElement> document.getElementById('offset');
@@ -291,6 +287,13 @@ export class GuitarTunerService {
     return Math.abs(frequenceToDisplay - previousFrequenceToDisplay) < smoothingThreshold;
 }
 
+
+frequenceIsSimilarEnoughtWithTarget(frequencePlayed: number) {
+  
+  return Math.abs(frequencePlayed - this.frequencyTarget)/this.frequencyTarget < 0.01;
+}
+
+
 frequenceFromIndexNote( indexNote: number, harmonic: number ) {
 
   
@@ -300,7 +303,7 @@ frequenceFromIndexNote( indexNote: number, harmonic: number ) {
   return  frequence;
 }
 
-isTuned(tunedCount: number, noteToDisplay: string): boolean{
+isTuned(tunedCount: number): boolean{
     return tunedCount>=this.tuningThreshold;
 }
 arrowRotation(offset: number): number{
