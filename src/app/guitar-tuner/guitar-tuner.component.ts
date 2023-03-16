@@ -73,7 +73,7 @@ export class GuitarTunerComponent {
     }
     isSet(){
       this.isSetting = false;
-      this.startTuning();
+      // this.startTuning();
     }
     setMiBemolTuning(){
       this.string1.note = "D#";

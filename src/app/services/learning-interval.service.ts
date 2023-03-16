@@ -1,8 +1,6 @@
-import { HtmlParser } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { delay } from 'rxjs';
-import { Notes } from '../models/Notes';
 import { Questions } from '../models/Questions';
+import { Resultats } from '../models/Resultats';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +12,13 @@ export class LearningIntervalService {
   fretPlaybackRateList = new Array(24);
   tempsReponse = 20;
   vitesseIntervalle = 1;
-  intervalleListSetting = new Array(12);
+  intervalleListSetting = new Array(13);
   typeIntervalleListSetting = [true, true, true];
   typeIntervalleNameList = ["Ascendant", "Descendant", "Harmonie"];
-  nombreQuestion = 10;
+  nombreQuestion = 1;
   intervalleNameList = ["Unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
   questionList!: Questions[];
+  resultatParIntervalleList = new Array();
 
 
   constructor(){
@@ -28,9 +27,13 @@ export class LearningIntervalService {
         playbackRateStrij = Math.pow(2,fret/12);
         this.fretPlaybackRateList[fret] = playbackRateStrij;
       }
-      for(let intervalle = 0; intervalle<14;intervalle++){
+      for(let intervalle = 0; intervalle<13;intervalle++){
        this.intervalleListSetting[intervalle] = true;
+       
+       this.resultatParIntervalleList.push(new Resultats(this.intervalleNameList[intervalle]))
+
       }
+  
     
 
   }  
@@ -140,6 +143,8 @@ createQuestion(){
   this.questionList = questionList;
 
 }
+
+
 
 
 

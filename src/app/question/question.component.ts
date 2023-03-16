@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Questions } from '../models/Questions';
+import { Resultats } from '../models/Resultats';
 import { LearningIntervalService } from '../services/learning-interval.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class QuestionComponent {
   currentResponse!: string;
   isFinished = false;
   questionList!: Questions[];
+  resultatParIntervalleList!: Resultats[];
   tempsReponse!: number;
   currentTimer!: number;
   barTimer!: string;
@@ -28,6 +30,11 @@ export class QuestionComponent {
     this.learningIntervalService.createQuestion();
     this.questionList = this.learningIntervalService.questionList;
     this.tempsReponse = this.learningIntervalService.tempsReponse;
+    this.learningIntervalService.resultatParIntervalleList.forEach(_ => {
+      _.nombreDeQuestion =0;
+      _.bonneReponse = 0;
+     });
+    this.resultatParIntervalleList = this.learningIntervalService.resultatParIntervalleList;
     this.currentQuestion = this.questionList[0];
     this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference, this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
     for (let intervalle = 0; intervalle < this.learningIntervalService.intervalleNameList.length; intervalle++) {
@@ -44,7 +51,11 @@ export class QuestionComponent {
   }
 
   replaySound() {
-    this.learningIntervalService.playIntervalleSound(this.currentQuestion.stringNoteReference, this.currentQuestion.fretNoteReference, this.currentQuestion.interval);
+    this.learningIntervalService
+      .playIntervalleSound(this.currentQuestion.stringNoteReference, 
+                            this.currentQuestion.fretNoteReference, 
+                            this.currentQuestion.interval);
+
   }
 
   validate() {
@@ -105,10 +116,12 @@ export class QuestionComponent {
 
   validateAnswer(answer: string) {
     this.currentQuestion.isAnswered = true;
-    this.currentQuestion.answer = answer;
-
-    if (answer === this.currentResponse) {
+    this.currentQuestion.answer = answer;  
+    var currentResultat =  this.resultatParIntervalleList.find(_ => _.interval === this.currentQuestion.nameInterval)
+    currentResultat!.nombreDeQuestion +=1;
+    if (answer === this.currentResponse) {   
       this.currentQuestion.isCorrect = true;
+      currentResultat!.bonneReponse +=1;
     } else {
       this.currentQuestion.isCorrect = false;
 

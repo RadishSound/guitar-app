@@ -38,7 +38,7 @@ export class LearningIntervalComponent {
        this.intervalleNameList = this.learningIntervalService.intervalleNameList;
        this.typeIntervalleNameList = this.learningIntervalService.typeIntervalleNameList;
        this.typeIntervalleListSetting = this.learningIntervalService.typeIntervalleListSetting;
-
+      
       }
 
     startQuiz(){

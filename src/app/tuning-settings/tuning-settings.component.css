@@ -10,4 +10,16 @@
     border: 2x black solid;
     border-radius: 5%;
     margin: 5px;
+    width: 220px;
+}
+mat-form-field{
+    width: 100px;
+}
+#input-field{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+
 }

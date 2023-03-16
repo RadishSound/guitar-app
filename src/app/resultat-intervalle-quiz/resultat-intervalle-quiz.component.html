@@ -10,39 +10,72 @@
         </div>
         <div id="content">
 
-            <div id="score" [ngStyle]="{'color': bonneReponse/questionList.length >=0.8? '#228822' : '#F93943'}">Tu as eu {{bonneReponse}}/{{questionList.length}} </div>
-            <div id="detail">
-                <table mat-table [dataSource]="questionList" class="mat-elevation-z8">
+            <div id="score" [ngStyle]="{'color': bonneReponse/questionList.length >=0.8? '#228822' : '#F93943'}">Tu as
+                eu {{bonneReponse}}/{{questionList.length}} </div>
 
-                    <ng-container matColumnDef="numeroQuestion">
-                        <th mat-header-cell *matHeaderCellDef> No. </th>
-                        <td mat-cell *matCellDef="let question"> {{question.numeroQuestion}} </td>
-                    </ng-container>
+            <mat-tab-group id="resultat">
+                <mat-tab label="Par question">
+                    <div id="detail">
+                        <table mat-table [dataSource]="questionList" class="mat-elevation-z8">
 
-                    <ng-container matColumnDef="correction">
-                        <th mat-header-cell *matHeaderCellDef> Correction </th>
-                        <td mat-cell *matCellDef="let question"> {{question.nameInterval}} </td>
-                    </ng-container>
+                            <ng-container matColumnDef="numeroQuestion">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let question"> {{question.numeroQuestion}} </td>
+                            </ng-container>
 
-                    <ng-container matColumnDef="type">
-                        <th mat-header-cell *matHeaderCellDef> Type </th>
-                        <td mat-cell *matCellDef="let question"> {{question.typeIntervalName}} </td>
-                    </ng-container>
+                            <ng-container matColumnDef="correction">
+                                <th mat-header-cell *matHeaderCellDef> Correction </th>
+                                <td mat-cell *matCellDef="let question"> {{question.nameInterval}} </td>
+                            </ng-container>
 
-                    <ng-container matColumnDef="reponse">
-                        <th mat-header-cell *matHeaderCellDef> Réponse </th>
-                        <td mat-cell *matCellDef="let question"> {{question.answer}} </td>
-                    </ng-container>
+                            <ng-container matColumnDef="type">
+                                <th mat-header-cell *matHeaderCellDef> Type </th>
+                                <td mat-cell *matCellDef="let question"> {{question.typeIntervalName}} </td>
+                            </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                        [ngStyle]="{'background-color' : row.isCorrect? '#7CFFCB' : '#F93943'}"></tr>
-                </table>
-            </div>
+                            <ng-container matColumnDef="reponse">
+                                <th mat-header-cell *matHeaderCellDef> Réponse </th>
+                                <td mat-cell *matCellDef="let question"> {{question.answer}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                [ngStyle]="{'background-color' : row.isCorrect? '#7CFFCB' : '#F93943'}"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Par intervalle">
+                    <div id="detail">
+                        <table mat-table [dataSource]="resultatParIntervalleList" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="intervalle">
+                                <th mat-header-cell *matHeaderCellDef> Intervalle </th>
+                                <td mat-cell *matCellDef="let resultat"> {{resultat.interval}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nombre">
+                                <th mat-header-cell *matHeaderCellDef> Nombre de questions </th>
+                                <td mat-cell *matCellDef="let resultat"> {{resultat.nombreDeQuestion}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pourcentage bonne réponse">
+                                <th mat-header-cell *matHeaderCellDef> Nombre de bonnes réponses </th>
+                                <td mat-cell *matCellDef="let resultat"> {{resultat.bonneReponse}}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="detailColumns; sticky: true;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: detailColumns;"
+                                [ngStyle]="{'background-color' : row.bonneReponse / row.nombreDeQuestion > 0.8? '#7CFFCB' : '#F93943'}"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
         </div>
         <div id="footer">
             <button class="mat-icon-button material-symbols-outlined" (click)="returnQuizMenu()"><mat-icon
                     fontIcon="home"></mat-icon></button>
+
             <button class="mat-icon-button material-symbols-outlined" (click)="restartQuiz()"><mat-icon
                     fontIcon="sync"></mat-icon></button>
         </div>

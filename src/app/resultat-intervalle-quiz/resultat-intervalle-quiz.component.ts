@@ -1,8 +1,10 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { Questions } from '../models/Questions';
+import { Resultats } from '../models/Resultats';
+
 import { LearningIntervalService } from '../services/learning-interval.service';
 
 
@@ -14,7 +16,7 @@ import { LearningIntervalService } from '../services/learning-interval.service';
 export class ResultatIntervalleQuizComponent {
   
   questionList !: Questions[];
-  // questionList = new Array();
+  resultatParIntervalleList!:  Resultats[];
   bonneReponse = 0;
   constructor(private learningIntervalService : LearningIntervalService, private router: Router){
 
@@ -22,22 +24,9 @@ export class ResultatIntervalleQuizComponent {
 
   ngOnInit(){
     this.questionList = this.learningIntervalService.questionList;
-    // for(let i =0; i<5; i++){
-    //   let q1 = new Questions(2,5,2);
-    //   q1.isCorrect = false;
-    //   q1.numeroQuestion = i+1;
-    //   q1.typeIntervalName = 'Ascendant';
-    //   q1.nameInterval = 'seconde majeure';
-    //   this.questionList[i] = q1;
-    // }
-    
-    console.log(this.questionList);
-
-    for(let question of this.questionList){
-      if(question.isCorrect){
-        this.bonneReponse++;
-      }
-    }
+    this.resultatParIntervalleList = this.learningIntervalService.resultatParIntervalleList
+    .filter(_ => this.questionList.some(q => q.nameInterval === _.interval)); 
+    this.bonneReponse = this.questionList.filter (_ => _.isCorrect).length
   }
 
   returnQuizMenu(){
@@ -49,6 +38,10 @@ export class ResultatIntervalleQuizComponent {
     this.router.navigateByUrl('/question');
 
   }
+  calculPourcentage(){
+
+  }
   displayedColumns: string[] = ['numeroQuestion','reponse','correction','type' ];
+  detailColumns: string[] = ['intervalle','nombre','pourcentage bonne réponse'];
 
 }

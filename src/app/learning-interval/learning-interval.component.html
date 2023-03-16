@@ -1,12 +1,9 @@
 <div id="container">
     <div id="quizz-launcher">
         <div id="launch-title">
-            QUIZZ
+            Apprendre les intervalles
         </div>
         <div id="quizz-setting">
-
-            <div class="paragraph">TYPE D'INTERVALLE</div>
-
             <div class="pre-settings">
                 <label class="control control-checkbox checkbox-setting"
                     *ngFor="let index = index; let type of typeIntervalleNameList ">
@@ -17,7 +14,6 @@
                 </label>
 
             </div>
-            <div class="paragraph">INTERVALLES</div>
 
             <div class="intervalle-settings">
                 <label class="control control-checkbox checkbox-setting"
@@ -29,8 +25,6 @@
                 </label>
 
             </div>
-            <div class="paragraph">AUTRES</div>
-
 
             <div class="pre-settings">
                 <label>
@@ -48,14 +42,11 @@
                     <span>Supprimer :</span>
                     <button class="mat-icon-button" (click)="removeAllSettings()"><mat-icon>close</mat-icon></button>
                 </div>
-
             </div>
         </div>
         <div id="launch-bottom">
             <button mat-raised-button id="launch-button" (click)="startQuiz()"
                 [ngStyle]="{'background-color': '#00CC66'}">START</button>
-
-
 
         </div>
 

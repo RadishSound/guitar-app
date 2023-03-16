@@ -35,15 +35,14 @@
         <button id="settings-button" (click)="setTuned()"><mat-icon>settings</mat-icon></button>
         <div id="form-setting" *ngIf="isSetting">
             <div id="form-setting-content">
-                <h1>Settings</h1>
+                <h1 id="title-setting">Settings</h1>
                 <div id="tuning-setting-content">
                     <app-tuning-settings *ngFor="let string of stringList "
                         [stringTuned]="string"></app-tuning-settings>
                 </div>
                 <div id="shortcut-settings">
-                    <button class="shortcut-button" (click)="setMiBemolTuning()">Mi bémol</button>
-                    <button class="shortcut-button" (click)="setStandardTuning()">Standard</button>
-
+                    <button  mat-raised-button (click)="setMiBemolTuning()">Mi bémol</button>
+                    <button  mat-raised-button (click)="setStandardTuning()">Standard</button>
                 </div>
                 <div id="form-footer">
 
