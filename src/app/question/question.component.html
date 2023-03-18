@@ -18,11 +18,12 @@
 
         <div id="question-content">
             <div id="question">
-            <label class="answer-radio-button" *ngFor="let intervalle of answersIntervalleList "
-                [ngStyle]="{'color': (currentQuestion.isAnswered && intervalle === currentResponse)? 'rgb(0,200,0)' : 'black' }">
-                <input type="radio" name="radio" (change)="currentAnswer = intervalle" />
-                {{intervalle}}
-
+            <label class="answer-radio-button" 
+            [ngStyle]="{'color': (currentQuestion.isAnswered && intervalle === currentResponse)? 'rgb(0,200,0)' : 'black' }" 
+            *ngFor="let intervalle of answersIntervalleList ">
+                <input type="radio" name="radio" (change)="currentAnswer = intervalle" (click)="playInterval(intervalle)" />
+                 
+                 {{intervalle}}
             </label>
         </div>
 
@@ -34,9 +35,6 @@
             <button mat-raised-button id = "validate-button" (click)="validate()" [ngStyle]="{'background-color': '#0066CC'}" >VALIDER</button>
             <button class="mat-icon-button" id = "next-button"(click)="nextQuestion()" [disabled]="isFinished" ><mat-icon
                     fontIcon="arrow_forward_ios"></mat-icon></button>
-
-
-
         </div>
     </div>
 </div>

@@ -110,7 +110,6 @@ playIntervalleSound(string: number, fret: number, intervalle: number){
 
 }
 
-
 createQuestion(){
   let questionList =  new Array();
   while(questionList.length<this.nombreQuestion){

@@ -51,12 +51,25 @@ export class QuestionComponent {
   }
 
   replaySound() {
+    console.log(this.currentQuestion)
     this.learningIntervalService
       .playIntervalleSound(this.currentQuestion.stringNoteReference, 
                             this.currentQuestion.fretNoteReference, 
                             this.currentQuestion.interval);
 
   }
+  playInterval(intervalName: string){
+    if(this.currentQuestion.isAnswered){
+    var interval = this.learningIntervalService.intervalleNameList.indexOf(intervalName)
+    if(this.currentQuestion.interval<0){
+      interval = -interval;
+    }
+    this.learningIntervalService
+    .playIntervalleSound(this.currentQuestion.stringNoteReference, 
+                          this.currentQuestion.fretNoteReference, 
+                          interval);
+  }
+}
 
   validate() {
     if (this.currentAnswer === "") {

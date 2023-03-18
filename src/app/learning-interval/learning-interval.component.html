@@ -27,21 +27,21 @@
             </div>
 
             <div class="pre-settings">
-                <label>
-                    Temps pour répondre :
-                    <mat-slider min="3" max="60" step="1" discrete [displayWith]="formatLabel">
-                        <input matSliderThumb [(ngModel)]="tempsReponse">
-                    </mat-slider>
-                </label>
-                <label>
-                    Nombre de questions :
-                    <input [(ngModel)]="nombreQuestion" class="inputNumber" type="number" name="numberInput" value="1"
-                        min="0" max="100" step="1">
-                </label>
-                <div id="delete-presetting">
-                    <span>Supprimer :</span>
-                    <button class="mat-icon-button" (click)="removeAllSettings()"><mat-icon>close</mat-icon></button>
-                </div>
+                    <label>
+                        Temps pour répondre :
+                        <mat-slider min="3" max="60" step="1" discrete [displayWith]="formatLabel">
+                            <input matSliderThumb [(ngModel)]="tempsReponse">
+                        </mat-slider>
+                    </label>
+                    <label>
+                        Nombre de questions :
+                        <input [(ngModel)]="nombreQuestion" class="inputNumber" type="number" name="numberInput"
+                            value="1" min="0" max="100" step="1">
+                    </label>
+               
+            </div>
+            <div id="delete-presetting">
+                <button mat-raised-button (click)="removeAllSettings()">Réinitialiser</button>
             </div>
         </div>
         <div id="launch-bottom">

@@ -79,7 +79,13 @@
     cursor: pointer;
     
 }
-
+#validate-button{
+    color: white;
+}
+.intervalle-button{
+    border: none;
+    background-color: white;
+}
 @media (max-width: 1000px) { 
     .answer-radio-button{
         font-size: 15px;
