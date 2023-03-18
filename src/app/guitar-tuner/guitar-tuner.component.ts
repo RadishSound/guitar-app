@@ -35,7 +35,6 @@ export class GuitarTunerComponent {
 
     startTuning() {
       this.isStarted = !this.isStarted;
-      // console.log(this.isStarted);
       if(this.isStarted){
         this.maticon = "mic_none";
         this.guitarTunerService.start();
@@ -91,9 +90,6 @@ export class GuitarTunerComponent {
     }
     cancelSettings(){
       this.isSetting = false;
-      console.log(this.currentsetting);
-
-
     }
     setStandardTuning(){
       this.string1.note = "E";

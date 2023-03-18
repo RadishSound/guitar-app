@@ -9,20 +9,21 @@ export class LearningIntervalService {
 
   audioContext = new AudioContext()
   stringList = new Array(6);
-  fretPlaybackRateList = new Array(24);
+  nombreIntervalle = 24;
+  fretPlaybackRateList = new Array(this.nombreIntervalle);
   tempsReponse = 20;
   vitesseIntervalle = 1;
   intervalleListSetting = new Array(13);
   typeIntervalleListSetting = [true, true, true];
   typeIntervalleNameList = ["Ascendant", "Descendant", "Harmonie"];
-  nombreQuestion = 1;
+  nombreQuestion = 5;
   intervalleNameList = ["Unisson", "Seconde mineure", "Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte","Triton","Quinte","Sixte mineure", "Sixte majeure", "Septième mineure","Septième majeure", "Octave"];
   questionList!: Questions[];
   resultatParIntervalleList = new Array();
 
 
   constructor(){
-      for(let fret = 0; fret<24;fret++){
+      for(let fret = 0; fret<this.nombreIntervalle;fret++){
         let playbackRateStrij = 1;
         playbackRateStrij = Math.pow(2,fret/12);
         this.fretPlaybackRateList[fret] = playbackRateStrij;
@@ -113,8 +114,8 @@ playIntervalleSound(string: number, fret: number, intervalle: number){
 createQuestion(){
   let questionList =  new Array();
   while(questionList.length<this.nombreQuestion){
-    let string= Math.round(Math.random()*6);
-    let fret= Math.round(Math.random()*23);
+    let string= Math.round(Math.random()*5);
+    let fret= Math.round(Math.random()*this.nombreIntervalle-1);
     let typeIndex= Math.round(Math.random()*(this.typeIntervalleListSetting.length-1));
     let intervalleIndex= Math.round(Math.random()*(this.intervalleListSetting.length-1));
     if(this.typeIntervalleListSetting[typeIndex] && this.intervalleListSetting[intervalleIndex]){
@@ -133,7 +134,7 @@ createQuestion(){
       question.nameInterval = this.intervalleNameList[Math.abs(intervalle)];
       question.numeroQuestion = questionList.length+1;
 
-      if(0<fret+intervalle && fret+intervalle<24){
+      if(0<fret+intervalle && fret+intervalle<this.nombreIntervalle){
         questionList.push(question);
       }
     }

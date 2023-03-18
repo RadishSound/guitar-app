@@ -280,26 +280,16 @@ export class GuitarTunerService {
   var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
    return Math.round( noteNum)+69;
 }
-
-
  noteIsSimilarEnough(frequenceToDisplay: number, previousFrequenceToDisplay: number, smoothingThreshold: number) {
 
     return Math.abs(frequenceToDisplay - previousFrequenceToDisplay) < smoothingThreshold;
 }
-
-
 frequenceIsSimilarEnoughtWithTarget(frequencePlayed: number) {
   
   return Math.abs(frequencePlayed - this.frequencyTarget)/this.frequencyTarget < 0.01;
 }
-
-
 frequenceFromIndexNote( indexNote: number, harmonic: number ) {
-
-  
-  const frequence = 440*(Math.pow(2,((indexNote-9))/12+(harmonic-3)));
-  // console.log("fréquence target : "+frequence+ " index Note: "+ indexNote+ "harmonic: "+harmonic);
- 
+  const frequence = 440*(Math.pow(2,((indexNote-9))/12+(harmonic-3))); 
   return  frequence;
 }
 
