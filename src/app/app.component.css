@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     height: 100%;
   }
   .navigate-button{
@@ -62,13 +62,19 @@
     width: 100%;
     font-size: large;
     display: flex;
-  align-items: center;
-  justify-content:  center;
+    align-items: center;
+    justify-content:  center;
   }
   .navigate-button:hover{
     background-color: #787878;
   }
 
+  .label-link{
+    width: 100%;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
   @media (max-width: 1000px) { 
    
 
@@ -80,13 +86,18 @@
 
   @media (max-width: 650px) { 
    
-
     .sidenav {
       background-color: #a8a6a6;
       width: 35%
     }
 }
-
+@media (max-width: 400px) { 
+   
+  .sidenav {
+    background-color: #a8a6a6;
+    width: 50%
+  }
+}
 @media (max-height: 600px) { 
   
 .content{
